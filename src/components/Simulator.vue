@@ -16,7 +16,7 @@
       <div class="absolute left-0 top-1/2 h-0.5 bg-[#001E40] -z-10 transition-all duration-300" :style="{ width: `${((step - 1) / 4) * 100}%` }"></div>
       
       <div class="flex flex-col items-center gap-2 bg-white px-2">
-        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors', step >= 1 ? (step > 1 ? 'bg-[#006C4B] text-white' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
+        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all', step >= 1 ? (step > 1 ? 'bg-[#006C4B] text-white progress-dot-complete' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
           <span v-if="step > 1" class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check</span>
           <span v-else>1</span>
         </div>
@@ -24,7 +24,7 @@
       </div>
       
       <div class="flex flex-col items-center gap-2 bg-white px-2">
-        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors', step >= 2 ? (step > 2 ? 'bg-[#006C4B] text-white' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
+        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all', step >= 2 ? (step > 2 ? 'bg-[#006C4B] text-white progress-dot-complete' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
           <span v-if="step > 2" class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check</span>
           <span v-else>2</span>
         </div>
@@ -32,7 +32,7 @@
       </div>
       
       <div class="flex flex-col items-center gap-2 bg-white px-2">
-        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors', step >= 3 ? (step > 3 ? 'bg-[#006C4B] text-white' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
+        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all', step >= 3 ? (step > 3 ? 'bg-[#006C4B] text-white progress-dot-complete' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
           <span v-if="step > 3" class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check</span>
           <span v-else>3</span>
         </div>
@@ -40,7 +40,7 @@
       </div>
       
       <div class="flex flex-col items-center gap-2 bg-white px-2">
-        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors', step >= 4 ? (step > 4 ? 'bg-[#006C4B] text-white' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
+        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all', step >= 4 ? (step > 4 ? 'bg-[#006C4B] text-white progress-dot-complete' : 'bg-[#001E40] text-white') : 'bg-[#E9E8E7] text-[#43474F]']">
           <span v-if="step > 4" class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check</span>
           <span v-else>4</span>
         </div>
@@ -48,7 +48,7 @@
       </div>
       
       <div class="flex flex-col items-center gap-2 bg-white px-2">
-        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors', step >= 5 ? 'bg-[#006C4B] text-white' : 'bg-[#E9E8E7] text-[#43474F]']">
+        <div :class="['w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all', step >= 5 ? 'bg-[#006C4B] text-white' : 'bg-[#E9E8E7] text-[#43474F]']">
           <span v-if="step > 5" class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check</span>
           <span v-else>5</span>
         </div>
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Error state -->
-    <div v-if="simulateError" class="bg-[#FFDAD6] border border-[#BA1A1A]/20 rounded-lg p-4 flex items-start gap-3 mb-6" role="alert">
+    <div v-if="simulateError" class="alert-enter bg-[#FFDAD6] border border-[#BA1A1A]/20 rounded-lg p-4 flex items-start gap-3 mb-6" role="alert">
       <span class="material-symbols-outlined text-[#BA1A1A] mt-0.5" style="font-variation-settings: 'FILL' 1;">warning</span>
       <div class="flex-1">
         <div class="font-semibold text-[#93000A]">Erro ao calcular a simulação</div>
@@ -87,7 +87,7 @@
 
     <!-- Step 1: Regime -->
     <Transition name="step" mode="out-in">
-      <div v-if="step === 1" key="step1">
+      <div v-if="step === 1" key="step1" class="step-content">
         <h3 id="regime-label" class="text-lg font-semibold text-[#1B1C1C] mb-2">Qual o regime tributário atual da sua empresa?</h3>
         <p class="text-sm text-[#43474F] mb-6">
           Se não souber, pergunte ao seu contador ou verifique no CNPJ.
@@ -104,9 +104,9 @@
           >
             <div
               :class="[
-                'relative flex flex-col items-start p-5 border-2 transition-all duration-200 rounded-lg min-h-[140px]',
+                'radio-card relative flex flex-col items-start p-5 border-2 rounded-lg min-h-[140px]',
                 form.regime === r.value
-                  ? 'bg-[#D5E3FF]/20 border-[#001E40]'
+                  ? 'selected bg-[#D5E3FF]/20 border-[#001E40]'
                   : 'bg-[#F5F3F3] border-transparent hover:bg-[#E9E8E7]',
               ]"
             >

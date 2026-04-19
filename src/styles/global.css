@@ -157,3 +157,95 @@ h1, h2, h3 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ─── Animation Utilities ─────────────────────────────────────────────── */
+:root {
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 100%; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  70% { transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ripple {
+  to { transform: scale(2); opacity: 0; }
+}
+
+/* Page load: staggered reveal */
+.animate-in {
+  animation: fadeSlideUp 0.5s var(--ease-out-quart) both;
+}
+.animate-delay-1 { animation-delay: 50ms; }
+.animate-delay-2 { animation-delay: 100ms; }
+.animate-delay-3 { animation-delay: 150ms; }
+.animate-delay-4 { animation-delay: 200ms; }
+.animate-delay-5 { animation-delay: 250ms; }
+
+/* Hero value: dramatic entrance */
+.animate-pop {
+  animation: popIn 0.4s var(--ease-out-quint) both;
+}
+
+/* Radio cards: selection feedback */
+.radio-card {
+  transition: transform 0.15s var(--ease-out-quart), background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.radio-card:hover {
+  transform: translateY(-2px);
+}
+.radio-card.selected {
+  transform: scale(1.01);
+}
+
+/* Button press feedback */
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Progress dot: pulse on complete */
+.progress-dot-complete {
+  animation: popIn 0.3s var(--ease-out-quint);
+}
+
+/* Chart line animation */
+.chart-line {
+  stroke-dasharray: 100%;
+  animation: drawLine 1s var(--ease-out-quart) forwards;
+}
+
+/* Alert entrance */
+.alert-enter {
+  animation: fadeSlideUp 0.3s var(--ease-out-quart);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-pop,
+  .radio-card.selected,
+  .progress-dot-complete,
+  .chart-line,
+  .alert-enter {
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+}

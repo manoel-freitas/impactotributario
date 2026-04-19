@@ -2,7 +2,7 @@
   <div class="result-root space-y-6">
 
     <!-- Impact badge -->
-    <div :class="['alert', alertClass]">
+    <div :class="['alert animate-pop', alertClass]">
       <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">{{ impactIcon }}</span>
       <div>
         <h3 class="font-bold text-base sm:text-lg">{{ result.headline }}</h3>
@@ -345,7 +345,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import type { SimulatorResult, SimulatorInput, YearProjection } from "../lib/types.ts";
 
 const props = defineProps<{
@@ -354,6 +354,15 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["restart"]);
+
+// Chart animation state
+const chartAnimated = ref(false);
+
+onMounted(() => {
+  setTimeout(() => {
+    chartAnimated.value = true;
+  }, 300);
+});
 
 // ─── Formatting ───────────────────────────────────────────────────────────────
 function fmt(val: number) {
