@@ -152,23 +152,29 @@ const ogImage = `${Astro.site}og-image.png`;
           </div>
           <div class="hidden md:flex items-center gap-1">
             <!-- Guiai Dropdown -->
-            <div class="dropdown dropdown-hover">
-              <button tabindex="0" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors flex items-center gap-1", currentPath.startsWith("/mei") || currentPath.startsWith("/simples") || currentPath.startsWith("/iva") || currentPath.startsWith("/split") || currentPath.startsWith("/lucro") || currentPath.startsWith("/nano") || currentPath.startsWith("/transicao") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>
+            <div class="relative" id="guias-dropdown">
+              <button 
+                type="button"
+                aria-expanded="false"
+                aria-haspopup="true"
+                class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors flex items-center gap-1", currentPath.startsWith("/mei") || currentPath.startsWith("/simples") || currentPath.startsWith("/iva") || currentPath.startsWith("/split") || currentPath.startsWith("/lucro") || currentPath.startsWith("/nano") || currentPath.startsWith("/transicao") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}
+                onclick="const dd = document.getElementById('guias-dropdown'); const expanded = dd.querySelector('[aria-expanded]').getAttribute('aria-expanded') === 'true'; dd.querySelector('[aria-expanded]').setAttribute('aria-expanded', !expanded); dd.classList.toggle('dropdown-open', !expanded);"
+              >
                 Guias
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <ul tabindex="0" class="dropdown-content menu menu-sm bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 mt-2 w-56 p-2">
-                <li><a href="/mei" class:list={["font-semibold", isActive("/mei") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>MEI</a></li>
-                <li><a href="/simples-nacional" class:list={["font-semibold", isActive("/simples-nacional") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Simples Nacional</a></li>
+              <ul class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 p-2" role="menu">
+                <li><a href="/mei" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/mei") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">MEI</a></li>
+                <li><a href="/simples-nacional" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/simples-nacional") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Simples Nacional</a></li>
                 <li class="border-t border-[#C3C6D1]/20 my-1"></li>
-                <li><a href="/iva-dual" class:list={["font-semibold", isActive("/iva-dual") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>IVA Dual</a></li>
-                <li><a href="/split-payment" class:list={["font-semibold", isActive("/split-payment") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Split Payment</a></li>
-                <li><a href="/lucro-presumido" class:list={["font-semibold", isActive("/lucro-presumido") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Lucro Presumido</a></li>
-                <li><a href="/lucro-real" class:list={["font-semibold", isActive("/lucro-real") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Lucro Real</a></li>
-                <li><a href="/nanoempreendedor" class:list={["font-semibold", isActive("/nanoempreendedor") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Nanoempreendedor</a></li>
-                <li><a href="/transicao" class:list={["font-semibold", isActive("/transicao") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Transição</a></li>
+                <li><a href="/iva-dual" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/iva-dual") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">IVA Dual</a></li>
+                <li><a href="/split-payment" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/split-payment") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Split Payment</a></li>
+                <li><a href="/lucro-presumido" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/lucro-presumido") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Lucro Presumido</a></li>
+                <li><a href="/lucro-real" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/lucro-real") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Lucro Real</a></li>
+                <li><a href="/nanoempreendedor" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/nanoempreendedor") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Nanoempreendedor</a></li>
+                <li><a href="/transicao" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/transicao") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Transição</a></li>
               </ul>
             </div>
             <a href="/cronograma" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/cronograma") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Cronograma</a>
@@ -235,5 +241,18 @@ const ogImage = `${Astro.site}og-image.png`;
         </div>
       </div>
     </footer>
+
+    <!-- Close dropdown on outside click -->
+    <script>
+      document.addEventListener('click', (e) => {
+        const guiasDropdown = document.getElementById('guias-dropdown');
+        const target = e.target as Node | null;
+        if (guiasDropdown && target && !guiasDropdown.contains(target)) {
+          guiasDropdown.classList.remove('dropdown-open');
+          const btn = guiasDropdown.querySelector('[aria-expanded]');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    </script>
   </body>
 </html>
