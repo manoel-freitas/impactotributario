@@ -114,12 +114,10 @@ const ogImage = `${Astro.site}og-image.png`;
     {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
       <>
         <script
-          type="text/partytown"
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}
         ></script>
         <script
-          type="text/partytown"
           set:html={`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
