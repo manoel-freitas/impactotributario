@@ -10,6 +10,26 @@
       </div>
     </div>
 
+    <!-- Sources section -->
+    <div v-if="result.isExempt && result.legalRef" class="border border-[#C3C6D1]/30 rounded-md p-4 bg-[#F5F3F3]/50">
+      <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-xl text-[#001E40]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+        <div class="flex-1">
+          <h4 class="font-semibold text-sm text-[#001E40] mb-1">Base legal da sua isenção</h4>
+          <p class="text-xs text-[#5E6F83] mb-2">{{ result.exemptReason }}</p>
+          <a
+            :href="result.legalRef.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-semibold text-[#001E40] hover:underline inline-flex items-center gap-1"
+          >
+            Ver {{ result.legalRef.label }}
+            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">open_in_new</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Exempt: simplified view -->
     <template v-if="result.isExempt">
       <div class="border-l-4 border-success pl-4 py-2 bg-success/5 rounded-sm">
@@ -287,7 +307,10 @@
     <div class="alert alert-warning text-sm">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
       <span>
-        Esta é uma <strong>estimativa educacional</strong> baseada na LC 214/2025 e EC 132/2023.
+        Esta é uma <strong>estimativa educacional</strong> baseada na
+        <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">LC 214/2025</a>
+        e
+        <a href="https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">EC 132/2023</a>.
         Os valores reais dependem de fatores específicos da sua empresa.
         Consulte um contador para decisões fiscais.
       </span>

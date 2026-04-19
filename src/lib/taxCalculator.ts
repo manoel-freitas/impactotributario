@@ -4,6 +4,7 @@ import type {
   YearProjection,
   ImpactLevel,
   ReformaData,
+  LegalRef,
 } from "./types.ts";
 
 // ─── Regime-specific CBS/IBS multipliers ──────────────────────────────────────
@@ -319,6 +320,7 @@ export function calculate(
       faqs:         buildFAQs(input, data),
       isExempt:     true,
       exemptReason: regimeRule.exemptReason,
+      legalRef:     regimeRule.legalRef,
     };
   }
 
@@ -336,5 +338,7 @@ export function calculate(
     actions:  buildActions(input, level, data),
     faqs:     buildFAQs(input, data),
     isExempt: false,
+    legalRef: data.sectorReductions[input.sector]?.legalRef
+      ?? data.regimeRules[input.regime]?.legalRef,
   };
 }

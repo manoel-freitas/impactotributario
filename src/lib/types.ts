@@ -56,6 +56,7 @@ export interface SimulatorResult {
   faqs: { q: string; a: string }[];
   isExempt: boolean;
   exemptReason?: string;
+  legalRef?: LegalRef;
 }
 
 // ─── Tax Reform Data (from JSON) ──────────────────────────────────────────────
@@ -63,6 +64,7 @@ export interface ReformaData {
   version: string;
   lastUpdated: string;
   source: string;
+  legislationLinks?: LegalRef[];
   transition: TransitionSchedule;
   sectorReductions: Record<Sector, SectorRule>;
   regimeRules: Record<TaxRegime, RegimeRule>;
@@ -77,8 +79,14 @@ export interface TransitionSchedule {
       ibs: number;
       phase: "test" | "transition" | "final";
       notes: string;
+      legalRef?: LegalRef;
     }
   >;
+}
+
+export interface LegalRef {
+  label: string;
+  url: string;
 }
 
 export interface SectorRule {
@@ -86,6 +94,7 @@ export interface SectorRule {
   reductionFactor: number; // 1.0 = no reduction, 0.4 = 60% reduction
   notes: string;
   isExempt?: boolean;
+  legalRef?: LegalRef;
 }
 
 export interface RegimeRule {
@@ -94,6 +103,7 @@ export interface RegimeRule {
   exemptReason?: string;
   currentEffectiveRate: number; // Current average effective rate
   notes: string;
+  legalRef?: LegalRef;
 }
 
 export interface CurrentRates {
