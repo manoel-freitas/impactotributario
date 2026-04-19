@@ -28,7 +28,7 @@ integrations: [
         forward: ["dataLayer.push", "gtag"],
         resolveUrl(url) {
           if (url.hostname === "www.googletagmanager.com") {
-            const proxy = new URL("https://impactotributario.com/.br/~partytown-proxy");
+            const proxy = new URL("https://impactotributario.com/~partytown/proxy");
             proxy.searchParams.append("url", url.href);
             return proxy;
           }
