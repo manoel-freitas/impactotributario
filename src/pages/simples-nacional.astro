@@ -1,0 +1,370 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SeeAlso from "../components/SeeAlso.astro";
+---
+
+<BaseLayout
+  title="Simples Nacional e a Reforma Tributária 2026 — CBS e IBS no DAS"
+  description="O Simples Nacional não vai acabar. Entenda como CBS e IBS entram no DAS, quando o impacto começa e se vale a pena migrar de regime. Guia completo 2026."
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Simples Nacional e a Reforma Tributária 2026 — CBS e IBS no DAS",
+    "description": "O Simples Nacional não vai acabar. Entenda como CBS e IBS entram no DAS, quando o impacto começa e se vale a pena migrar de regime. Guia completo 2026.",
+    "url": "https://simuladortributario.com.br/simples-nacional",
+    "image": "https://simuladortributario.com.br/og-image.png",
+    "datePublished": "2025-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Simulador Reforma Tributária"
+    }
+  })} />
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 mb-24 pt-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#F5F3F3] rounded-full mb-6">
+          <span class="material-symbols-outlined text-[#006C4B] text-sm" style="font-variation-settings: 'FILL' 1;">info</span>
+          <span class="text-xs font-semibold text-[#1B1C1C] tracking-wide uppercase">Regime Unificado</span>
+        </div>
+        <h1 class="font-bold text-5xl md:text-6xl lg:text-7xl text-[#001E40] tracking-tight leading-tight mb-6" style="font-family: 'Public Sans', sans-serif;">
+          Simples Nacional<br/>
+          <span class="text-[#006C4B]">e a Reforma Tributária 2026</span>
+        </h1>
+        <p class="text-xl text-[#43474F] mb-10 max-w-2xl leading-relaxed" style="font-family: 'Inter', sans-serif;">
+          Entenda como o regime unificado convive com o novo IVA Dual. A estrutura do Simples é mantida, mas a forma como você gera créditos para seus clientes empresariais muda.
+        </p>
+        <div class="flex gap-4 flex-wrap">
+          <a href="/#simulador" class="bg-[#001E40] text-white px-8 py-4 rounded-xl font-semibold shadow-md hover:opacity-90 transition-opacity flex items-center gap-2">
+            Acessar Calculadora
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calculate</span>
+          </a>
+          <button class="bg-[#EFEDED] text-[#1B1C1C] px-8 py-4 rounded-xl font-semibold hover:bg-[#E3E2E2] transition-colors">
+            Ler FAQ
+          </button>
+        </div>
+      </div>
+
+      <!-- Asymmetric Decorative Card -->
+      <div class="lg:col-span-5 relative hidden lg:block">
+        <div class="absolute inset-0 bg-[#003366] opacity-5 rounded-none transform translate-x-4 translate-y-4"></div>
+        <div class="relative bg-[#F5F3F3]/70 backdrop-blur-xl p-10 shadow-sm border border-[#C3C6D1]/15 rounded-sm">
+          <div class="flex justify-between items-start mb-12">
+            <div>
+              <p class="text-sm font-medium text-[#43474F] uppercase tracking-wider mb-1" style="font-family: 'Inter', sans-serif;">Impacto Previsto</p>
+              <p class="text-3xl font-bold text-[#001E40]" style="font-family: 'Public Sans', sans-serif;">Manutenção</p>
+            </div>
+            <span class="material-symbols-outlined text-4xl text-[#006C4B]" style="font-variation-settings: 'FILL' 1;">verified</span>
+          </div>
+          <div class="space-y-6">
+            <div class="flex justify-between items-center pb-4 border-b border-[#E9E8E7]">
+              <span class="text-[#1B1C1C]">Alíquotas</span>
+              <span class="font-semibold text-[#001E40]">Sem Alteração</span>
+            </div>
+            <div class="flex justify-between items-center pb-4 border-b border-[#E9E8E7]">
+              <span class="text-[#1B1C1C]">Limite Faturamento</span>
+              <span class="font-semibold text-[#001E40] tabular-nums">R$ 4.8M</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-[#1B1C1C]">Transferência de Crédito</span>
+              <span class="px-3 py-1 bg-[#9AF5CA] text-[#006C4B] rounded-full text-xs font-semibold">Opcional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Points Timeline -->
+  <section class="bg-[#F5F3F3] py-12 mb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-6 rounded-sm border border-[#C3C6D1]/15 text-center">
+          <div class="material-symbols-outlined text-3xl mb-2 text-[#43474F]" style="font-variation-settings: 'FILL' 1;">calendar_month</div>
+          <div class="font-bold text-lg text-[#001E40]">2026</div>
+          <div class="text-sm text-[#43474F]">Sem mudanças para o Simples</div>
+        </div>
+        <div class="bg-[#002f74] p-6 rounded-sm text-center">
+          <div class="material-symbols-outlined text-3xl mb-2 text-white" style="font-variation-settings: 'FILL' 1;">warning</div>
+          <div class="font-bold text-lg text-white">2027</div>
+          <div class="text-sm text-[#9AF5CA]">CBS entra no DAS. PIS/COFINS saem.</div>
+        </div>
+        <div class="bg-white p-6 rounded-sm border border-[#C3C6D1]/15 text-center">
+          <div class="material-symbols-outlined text-3xl mb-2 text-[#43474F]" style="font-variation-settings: 'FILL' 1;">trending_up</div>
+          <div class="font-bold text-lg text-[#001E40]">2029–2033</div>
+          <div class="text-sm text-[#43474F]">IBS gradual no DAS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Narrative Section: "Vou pagar mais ou menos?" -->
+  <section class="bg-[#F5F3F3] py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="mb-16 max-w-3xl">
+        <h2 class="text-4xl font-bold text-[#001E40] tracking-tight mb-4" style="font-family: 'Public Sans', sans-serif;">Vou pagar mais ou menos?</h2>
+        <p class="text-lg text-[#43474F]">
+          A carga tributária total do Simples Nacional não sofre aumento com a reforma. No entanto, a decisão de recolher os novos impostos (IBS e CBS) dentro ou fora da guia única (DAS) afetará sua competitividade no mercado B2B.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout for comparison -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Card 1: Current Model -->
+        <div class="bg-white p-10 rounded-sm shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 mb-6">
+              <span class="material-symbols-outlined text-[#737780]" style="font-variation-settings: 'FILL' 1;">history</span>
+              <span class="text-sm font-semibold text-[#43474F] uppercase tracking-wider" style="font-family: 'Inter', sans-serif;">Modelo Atual (DAS)</span>
+            </div>
+            <h3 class="text-2xl font-bold text-[#1B1C1C] mb-4" style="font-family: 'Public Sans', sans-serif;">Recolhimento Unificado Restrito</h3>
+            <p class="text-[#43474F] mb-8">
+              O imposto é pago em uma única guia. Contudo, empresas do regime normal que compram de optantes do Simples têm limitação ou impossibilidade de tomar crédito dos impostos indiretos embutidos.
+            </p>
+          </div>
+          <div class="bg-[#F5F3F3] p-6 rounded-sm border border-[#C3C6D1]/15">
+            <ul class="space-y-4 text-sm">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#BA1A1A] text-[20px]" style="font-variation-settings: 'FILL' 1;">close</span>
+                <span class="text-[#1B1C1C]">Crédito limitado para clientes B2B.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#006C4B] text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                <span class="text-[#1B1C1C]">Simplicidade administrativa máxima.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: Future Model -->
+        <div class="bg-[#001E40] p-10 rounded-sm shadow-lg flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#d5e3ff] opacity-10 rounded-full blur-3xl"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 mb-6">
+              <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">update</span>
+              <span class="text-sm font-semibold text-[#d5e3ff] uppercase tracking-wider" style="font-family: 'Inter', sans-serif;">Novo Modelo (IBS/CBS)</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4" style="font-family: 'Public Sans', sans-serif;">Escolha de Transferência</h3>
+            <p class="text-[#d5e3ff] mb-8">
+              Você pode manter tudo no DAS. Mas, se vender para empresas (B2B), poderá optar por apurar o IBS e a CBS pelas regras normais, repassando crédito integral aos seus clientes e tornando seu produto mais competitivo.
+            </p>
+          </div>
+          <div class="bg-[#001E40]/40 backdrop-blur-sm p-6 rounded-sm relative z-10 border border-[#d5e3ff]/20">
+            <ul class="space-y-4 text-sm">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#9AF5CA] text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                <span class="text-white">Repasse de crédito integral no B2B (se optar).</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#9AF5CA] text-[20px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                <span class="text-white">Mantém a guia única para o B2C.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ledger Table Layout -->
+      <div class="mt-16 bg-white p-8 md:p-12 rounded-sm shadow-sm">
+        <h4 class="text-xl font-bold text-[#001E40] mb-8 border-b border-[#C3C6D1]/15 pb-4" style="font-family: 'Public Sans', sans-serif;">Comparativo de Cenários</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="text-sm font-medium text-[#43474F] uppercase tracking-wider">
+                <th class="pb-4 pr-6" style="font-family: 'Inter', sans-serif;">Perfil da Empresa</th>
+                <th class="pb-4 px-6" style="font-family: 'Inter', sans-serif;">Recomendação</th>
+                <th class="pb-4 px-6 text-right" style="font-family: 'Inter', sans-serif;">Complexidade</th>
+              </tr>
+            </thead>
+            <tbody class="text-[#1B1C1C] text-base">
+              <tr class="border-t border-[#E9E8E7] transition-colors hover:bg-[#F5F3F3]">
+                <td class="py-5 pr-6 font-medium">Foco em Vendas B2C (Consumidor Final)</td>
+                <td class="py-5 px-6">Manter recolhimento 100% no DAS</td>
+                <td class="py-5 px-6 text-right tabular-nums">Baixa</td>
+              </tr>
+              <tr class="border-t border-[#E9E8E7] transition-colors hover:bg-[#F5F3F3]">
+                <td class="py-5 pr-6 font-medium">Foco em Vendas B2B (Empresas)</td>
+                <td class="py-5 px-6">Optar por IBS/CBS na regra geral</td>
+                <td class="py-5 px-6 text-right tabular-nums">Média</td>
+              </tr>
+              <tr class="border-t border-[#E9E8E7] transition-colors hover:bg-[#F5F3F3]">
+                <td class="py-5 pr-6 font-medium">Misto (B2B e B2C)</td>
+                <td class="py-5 px-6">Análise contábil de margem necessária</td>
+                <td class="py-5 px-6 text-right tabular-nums">Alta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact by Anexo Table -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
+    <h2 class="text-3xl font-bold text-[#001E40] tracking-tight mb-8" style="font-family: 'Public Sans', sans-serif;">Impacto por Anexo do Simples Nacional</h2>
+    <p class="text-[#43474F] mb-8">
+      Cada Anexo do Simples agrupa atividades econômicas com alíquotas distintas. Veja a estimativa de impacto da Reforma Tributária para cada um:
+    </p>
+    <div class="bg-white rounded-sm shadow-sm border border-[#C3C6D1]/15 overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-[#F5F3F3]">
+          <tr>
+            <th class="px-6 py-4 text-sm font-semibold text-[#43474F]">Anexo</th>
+            <th class="px-6 py-4 text-sm font-semibold text-[#43474F]">Atividade</th>
+            <th class="px-6 py-4 text-sm font-semibold text-[#43474F]">Impacto estimado</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#E9E8E7]">
+          <tr>
+            <td class="px-6 py-4 font-semibold">I</td>
+            <td class="px-6 py-4">Comércio</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 bg-[#F5F3F3] text-[#43474F] rounded-full text-xs font-semibold">Neutro / leve aumento</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-semibold">II</td>
+            <td class="px-6 py-4">Indústria</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 bg-[#fff8c6] text-[#997200] rounded-full text-xs font-semibold">Monitorar CBS</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-semibold">III</td>
+            <td class="px-6 py-4">Serviços (baixo custo)</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 bg-[#9AF5CA] text-[#006C4B] rounded-full text-xs font-semibold">Possível redução</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-semibold">IV</td>
+            <td class="px-6 py-4">Serviços (construção civil)</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 bg-[#FFDad6] text-[#93000A] rounded-full text-xs font-semibold">Aumento CBS</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-semibold">V</td>
+            <td class="px-6 py-4">Serviços (alto custo / liberais)</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 bg-[#fff8c6] text-[#997200] rounded-full text-xs font-semibold">Aumento moderado</span></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 font-semibold">VI</td>
+            <td class="px-6 py-4">Serviços (TI / tecnologia)</td>
+            <td class="px-6 py-4"><span class="px-3 py-1 bg-[#F5F3F3] text-[#43474F] rounded-full text-xs font-semibold">Neutro</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-[#737780] mt-4">
+      * Estimativas baseadas na EC 132/2023 e LC 214/2025. Alíquotas definitivas serão definidas por lei complementar.
+    </p>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
+    <h2 class="text-3xl font-bold text-[#001E40] tracking-tight mb-12 text-center" style="font-family: 'Public Sans', sans-serif;">Perguntas Frequentes (Simples Nacional)</h2>
+    <div class="space-y-6">
+      <!-- FAQ Item -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          O Simples Nacional vai acabar?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Não. O regime especial do Simples Nacional está garantido pela Constituição e será mantido. A mudança principal está na forma como os tributos que compõem a guia única interagem com o restante do sistema tributário.
+        </p>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          Sou obrigado a separar o IBS e CBS do DAS?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Não, é uma opção. Se você não fizer nada, continuará pagando todos os tributos na guia única. No entanto, se o seu cliente principal for outra empresa, ele pode exigir que você separe para que ele possa utilizar os créditos integrais.
+        </p>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          E quanto aos impostos como INSS patrimonial e IRPJ?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Estes tributos continuam sendo recolhidos normalmente dentro da guia unificada do DAS. A reforma atual trata especificamente da tributação sobre o consumo (ICMS, ISS, PIS, COFINS e IPI).
+        </p>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          Vale a pena migrar do Simples para o Lucro Presumido?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Depende do perfil do negócio. A migração pode ser vantajosa para empresas com alto volume de vendas B2B que podem aproveitar créditos de CBS/IBS, ou negócios com margens muito apertadas. Para a maioria dos pequenos negócios com vendas ao consumidor final, o Simples continua mais vantajoso. Consulte seu contador.
+        </p>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          Empresas do Simples geram crédito de CBS/IBS para clientes PJ?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Sim, mas o crédito gerado é menor do que o gerado por empresas no regime geral (Lucro Presumido/Real). Isso pode impactar decisões de compra de grandes empresas que preferem fornecedores com crédito tributário pleno. Avalie seu perfil de clientes ao tomar decisões de regime.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O Simples Nacional vai acabar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não. O regime especial do Simples Nacional está garantido pela Constituição e será mantido. A mudança principal está na forma como os tributos que compõem a guia única interagem com o restante do sistema tributário." }
+      },
+      {
+        "@type": "Question",
+        "name": "Sou obrigado a separar o IBS e CBS do DAS?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não, é uma opção. Se você não fizer nada, continuará pagando todos os tributos na guia única. No entanto, se o seu cliente principal for outra empresa, ele pode exigir que você separe para que ele possa utilizar os créditos integrais." }
+      },
+      {
+        "@type": "Question",
+        "name": "E quanto aos impostos como INSS patrimonial e IRPJ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Estes tributos continuam sendo recolhidos normalmente dentro da guia unificada do DAS. A reforma atual trata especificamente da tributação sobre o consumo (ICMS, ISS, PIS, COFINS e IPI)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Vale a pena migrar do Simples para o Lucro Presumido?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Depende do perfil do negócio. A migração pode ser vantajosa para empresas com alto volume de vendas B2B que podem aproveitar créditos de CBS/IBS, ou negócios com margens muito apertadas. Para a maioria dos pequenos negócios com vendas ao consumidor final, o Simples continua mais vantajoso. Consulte seu contador." }
+      },
+      {
+        "@type": "Question",
+        "name": "Empresas do Simples geram crédito de CBS/IBS para clientes PJ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas o crédito gerado é menor do que o gerado por empresas no regime geral (Lucro Presumido/Real). Isso pode impactar decisões de compra de grandes empresas que preferem fornecedores com crédito tributário pleno. Avalie seu perfil de clientes ao tomar decisões de regime." }
+      }
+    ]
+  })} />
+
+  <SeeAlso 
+    variant="cards" 
+    items={[
+      { href: "/mei", title: "MEI e a Reforma", description: "MEI está isento de CBS e IBS — entenda os detalhes", icon: "check_circle" },
+      { href: "/cronograma", title: "Cronograma 2026–2033", description: "Todas as datas da transição tributária", icon: "calendar_month" },
+      { href: "/#simulador", title: "Simulador Gratuito", description: "Calcule o impacto real no seu negócio", icon: "calculate" }
+    ]} 
+  />
+
+  <!-- CTA Final -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 mt-8 pb-16 text-center">
+    <a href="/#simulador" class="inline-flex items-center gap-2 bg-[#001E40] text-white px-8 py-4 rounded-xl font-semibold shadow-md hover:opacity-90 transition-opacity">
+      Simule o impacto no seu negócio
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+    </a>
+  </section>
+</BaseLayout>

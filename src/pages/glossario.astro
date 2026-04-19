@@ -1,0 +1,279 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const glossaryTerms = [
+  {
+    term: "CBS — Contribuição sobre Bens e Serviços",
+    anchor: "cbs",
+    shortLabel: "CBS",
+    definition:
+      "Tributo federal criado pela LC 214/2025 que substitui o PIS e a COFINS. Incide sobre operações de venda de bens e prestação de serviços. Em 2026 tem alíquota informativa de 0,9%; entra em vigor pleno em 2027 com alíquota estimada de ~8,4%.",
+    tags: ["federal", "substitui PIS e COFINS"],
+    link: "/simples-nacional",
+  },
+  {
+    term: "IBS — Imposto sobre Bens e Serviços",
+    anchor: "ibs",
+    shortLabel: "IBS",
+    definition:
+      "Tributo estadual e municipal criado pela LC 214/2025 que substitui o ICMS e o ISS. Gerido pelo Comitê Gestor do IBS (CGIBS). Inicia cobrança gradual em 2029 e chega à alíquota plena em 2033.",
+    tags: ["estadual/municipal", "substitui ICMS e ISS"],
+    link: "/simples-nacional",
+  },
+  {
+    term: "IVA Dual",
+    anchor: "iva-dual",
+    shortLabel: "IVA Dual",
+    definition:
+      "Modelo de tributação sobre o consumo adotado pela Reforma Tributária brasileira, composto por dois impostos sobre valor agregado: CBS (federal) e IBS (estadual/municipal). Segue o padrão usado em mais de 170 países. Elimina a tributação em cascata ao permitir créditos em toda a cadeia produtiva.",
+    tags: ["modelo tributário", "não cumulativo"],
+    featured: true,
+  },
+  {
+    term: "IS — Imposto Seletivo",
+    anchor: "is",
+    shortLabel: "Imp. Seletivo",
+    definition:
+      "Imposto federal criado paraonerar bens e serviços considerados prejudiciais à saúde ou ao meio ambiente — como cigarros, bebidas alcoólicas, veículos e produtos de extração mineral. Não substitui outros tributos; é adicional ao CBS e IBS.",
+    tags: ["extrafiscal", "bens prejudiciais"],
+  },
+  {
+    term: "Split Payment",
+    anchor: "split-payment",
+    shortLabel: "Split Payment",
+    definition:
+      "Mecanismo de retenção automática do imposto no momento do pagamento. Quando o cliente paga via Pix ou cartão, o sistema bancário separa automaticamente a parte relativa ao CBS antes de repassar o valor à empresa. Elimina o modelo declaratório tradicional e impacta o fluxo de caixa das empresas.",
+    tags: ["retenção automática", "fluxo de caixa"],
+  },
+  {
+    term: "Nanoempreendedor",
+    anchor: "nanoem",
+    shortLabel: "Nanoempreendedor",
+    definition:
+      "Nova categoria criada pela EC 132/2023 para pessoa física com faturamento anual até R$40.500. Tem isenção total de CBS e IBS. Diferente do MEI, o nanoempreendedor não necessariamente tem CNPJ.",
+    tags: ["isento", "até R$40.500/ano"],
+  },
+  {
+    term: "MEI — Microempreendedor Individual",
+    anchor: "mei",
+    shortLabel: "MEI",
+    definition:
+      "Regime simplificado para pequenos empreendedores com faturamento até R$81.000/ano. Isento de CBS e IBS pela LC 214/2025. Paga DAS fixo mensal. O MEI Caminhoneiro tem limite diferenciado.",
+    tags: ["isento", "DAS fixo", "até R$81.000/ano"],
+    link: "/mei",
+  },
+  {
+    term: "Simples Nacional",
+    anchor: "simples",
+    shortLabel: "Simples Nacional",
+    definition:
+      "Regime tributário unificado para micro e pequenas empresas com faturamento até R$4,8M/ano. Não será extinto pela Reforma. CBS e IBS serão embutidos no DAS com alíquotas menores. A partir de 2027, o DAS incorpora CBS no lugar do PIS/COFINS.",
+    tags: ["mantido", "DAS", "alíquota reduzida"],
+    link: "/simples-nacional",
+  },
+  {
+    term: "Lucro Presumido",
+    anchor: "lucro-presumido",
+    shortLabel: "Lucro Presumido",
+    definition:
+      "Regime tributário onde o lucro é calculado por presunção (percentual fixo sobre a receita), sem apurar o lucro real. Permite faturamento até R$78M/ano. Na reforma, é impactado pela substituição de PIS/COFINS por CBS (2027) e ICMS/ISS por IBS (2029–2033).",
+    tags: ["até R$78M/ano"],
+  },
+  {
+    term: "Lucro Real",
+    anchor: "lucro-real",
+    shortLabel: "Lucro Real",
+    definition:
+      "Regime tributário baseado no lucro efetivo da empresa. Obrigatório para empresas com faturamento acima de R$78M/ano ou de determinados setores. Pode se beneficiar mais do sistema de créditos do IVA, especialmente empresas com alta cadeia de insumos.",
+    tags: ["créditos IVA", "obrigatório acima R$78M"],
+  },
+  {
+    term: "Não cumulatividade",
+    anchor: "nao-cumulatividade",
+    shortLabel: "Não Cumulatividade",
+    definition:
+      "Princípio pelo qual o imposto pago nas etapas anteriores da cadeia produtiva pode ser abatido do imposto devido na etapa seguinte. O IVA Dual (CBS + IBS) é não cumulativo — elimina o 'imposto sobre imposto' que existia no sistema atual com PIS/COFINS e ICMS.",
+    tags: ["crédito fiscal", "cadeia produtiva"],
+  },
+  {
+    term: "cClassTrib — Código de Classificação Tributária",
+    anchor: "cclasstrib",
+    shortLabel: "cClassTrib",
+    definition:
+      "Campo obrigatório nas notas fiscais eletrônicas (NF-e, NFC-e) a partir de 2026 que classifica cada item conforme o tratamento tributário do IBS e CBS (tributação integral, alíquota reduzida, isenção, imunidade, diferimento ou regime especial). Exige revisão do cadastro de produtos.",
+    tags: ["NF-e", "obrigação acessória", "2026"],
+  },
+  {
+    term: "NCM — Nomenclatura Comum do Mercosul",
+    anchor: "ncm",
+    shortLabel: "NCM",
+    definition:
+      "Código de classificação de mercadorias (8 dígitos) usado nas notas fiscais de produtos físicos. Necessário para identificar a alíquota correta de CBS/IBS. Empresas de serviços usam o NBS (Nomenclatura Brasileira de Serviços) no lugar do NCM.",
+    tags: ["produtos", "classificação fiscal"],
+  },
+  {
+    term: "NBS — Nomenclatura Brasileira de Serviços",
+    anchor: "nbs",
+    shortLabel: "NBS",
+    definition:
+      "Código de classificação de serviços, intangíveis e outras operações não físicas, equivalente ao NCM para serviços. Usado para identificar a alíquota de CBS/IBS em prestações de serviços nas notas fiscais.",
+    tags: ["serviços", "classificação fiscal"],
+  },
+  {
+    term: "Período de Transição (2026–2033)",
+    anchor: "transicao",
+    shortLabel: "Transição",
+    definition:
+      "Fase em que o sistema tributário antigo (PIS, COFINS, ICMS, ISS) e o novo (CBS, IBS) coexistem. Em 2026, os novos tributos têm caráter apenas informativo. Em 2027, a CBS entra em vigor pleno. O IBS inicia em 2029 e cresce 10%/ano até 2033, quando os tributos antigos são extintos.",
+    tags: ["7 anos", "gradual", "2026–2033"],
+  },
+];
+
+---
+<BaseLayout
+  title="Glossário da Reforma Tributária — CBS, IBS, IVA Dual e mais"
+  description="Entenda os termos da Reforma Tributária brasileira: CBS, IBS, IVA Dual, Split Payment, nanoempreendedor, cClassTrib e muito mais. Glossário completo e atualizado."
+>
+  <!-- Hero & Search Section -->
+  <section class="bg-surface relative overflow-hidden pb-12 pt-16 px-6">
+    <!-- Abstract background -->
+    <div class="absolute inset-0 opacity-[0.06] pointer-events-none bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-center mix-blend-luminosity"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/50 to-surface pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto relative z-10 text-center">
+      <h1 class="font-headline text-5xl md:text-6xl font-bold text-primary tracking-tighter mb-6">Glossário da Reforma Tributária</h1>
+      <p class="font-body text-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">Navegue pelo vocabulário técnico da reforma. Definições precisas e fontes oficiais para total transparência do novo sistema.</p>
+      
+      <!-- Search Component -->
+      <div class="relative max-w-2xl mx-auto">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+        <input 
+          id="glossary-search"
+          class="w-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface font-body py-4 pl-12 pr-6 rounded-xl shadow-[0_8px_24px_rgba(27,28,28,0.04)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent transition-all placeholder:text-outline" 
+          placeholder="Buscar termo (ex: IVA Dual, CBS, Alíquota...)" 
+          type="text"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Term Cards Grid -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <div class="flex items-center gap-3 mb-10">
+      <h2 class="font-headline text-3xl font-bold text-primary tracking-tight">Todos os Termos</h2>
+      <div class="h-px bg-outline-variant/30 flex-grow ml-4"></div>
+    </div>
+
+    <!-- Bento-style Asymmetric Grid -->
+    <div id="glossary-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {glossaryTerms.map((t) => (
+        <article 
+          id={t.anchor}
+          class={`glossary-card bg-surface-container-lowest p-8 rounded-DEFAULT cloud-shadow hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full border border-outline-variant/10 ${t.featured ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-primary to-primary-container text-on-primary' : ''}`}
+          data-term={t.term.toLowerCase()}
+          data-letter={t.shortLabel.charAt(0)}
+        >
+          {t.featured ? (
+            <div class="relative z-10">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="font-headline text-2xl font-bold">{t.term}</h3>
+              </div>
+              <p class="font-body text-primary-fixed-dim text-sm mb-4 border-b border-white/10 pb-4 inline-block">Sistema de Tributação</p>
+              <p class="font-body text-on-primary/90 leading-relaxed mb-6">{t.definition}</p>
+              <div class="flex gap-2 flex-wrap">
+                {t.tags.map((tag) => (
+                  <span class="bg-white/10 text-on-primary text-xs font-bold px-2 py-1 rounded-sm tracking-wider">{tag}</span>
+                ))}
+                {t.link && (
+                  <a href={t.link} class="bg-[#9AF5CA] text-[#005138] text-xs font-bold px-2 py-1 rounded-sm tracking-wider hover:bg-[#7FD8AF] transition-colors">Ver mais →</a>
+                )}
+              </div>
+            </div>
+          ) : (
+            <>
+              <div class="mb-auto">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="font-headline text-2xl font-bold text-primary">{t.shortLabel}</h3>
+                  <span class="bg-surface-container-high text-primary text-xs font-bold px-2 py-1 rounded-sm tracking-wider">{t.tags[0]}</span>
+                </div>
+                <p class="font-body text-sm font-medium text-outline mb-3">{t.term.replace(t.shortLabel, '').trim()}</p>
+                <p class="font-body text-on-surface-variant leading-relaxed mb-6">{t.definition}</p>
+              </div>
+              <div class="flex gap-2 flex-wrap mt-auto pt-4">
+                {t.tags.map((tag) => (
+                  <span class="bg-surface-container text-on-surface-variant text-xs font-medium px-2 py-1 rounded-sm">{tag}</span>
+                ))}
+                {t.link && (
+                  <a href={t.link} class="bg-[#9AF5CA] text-[#005138] text-xs font-bold px-2 py-1 rounded-sm hover:bg-[#7FD8AF] transition-colors">Ver mais →</a>
+                )}
+              </div>
+            </>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Schema: DefinedTermSet -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "name": "Glossário da Reforma Tributária Brasileira",
+    "description": "Termos e definições relacionados à Reforma Tributária do Brasil (LC 214/2025)",
+    "hasDefinedTerm": glossaryTerms.map(t => ({
+      "@type": "DefinedTerm",
+      "name": t.term,
+      "description": t.definition,
+      "url": `https://simuladortributario.com.br/glossario#${t.anchor}`,
+    })),
+  })} />
+
+  <!-- Client-side search & filter -->
+  <script>
+    const searchInput = document.getElementById('glossary-search');
+    const cards = Array.from(document.querySelectorAll('.glossary-card'));
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase();
+        
+        cards.forEach(card => {
+          const term = (card as HTMLElement).dataset.term || '';
+          if (!query || term.includes(query)) {
+            (card as HTMLElement).style.display = 'flex';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    }
+  </script>
+
+  <!-- CTA Final -->
+  <div class="bg-surface-container-low py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="font-headline text-2xl font-bold text-primary mb-4">Pronto para calcular o impacto?</h3>
+      <p class="font-body text-on-surface-variant mb-8">Simule quanto a reforma tributária vai afetar o seu negócio com base no seu regime e setor.</p>
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 bg-secondary text-on-secondary font-label font-semibold px-6 py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-colors"
+      >
+        Simular impacto no meu negócio
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .cloud-shadow {
+    box-shadow: 0 8px 24px rgba(27, 28, 28, 0.04);
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+interface Props {
+  items: Array<{
+    href: string
+    title: string
+    description: string
+    icon?: string
+  }>
+  variant?: 'list' | 'cards'
+  class?: string
+}
+
+const { items, variant = 'cards', class: className = '' } = Astro.props
+---
+
+<section class:list={['max-w-7xl mx-auto px-4 sm:px-6 pb-16', className]}>
+  <h2 class="text-xl font-headline font-bold text-[#001E40] mb-6">Veja também</h2>
+  
+  {variant === 'list' ? (
+    <div class="divide-y divide-[#C3C6D1]/20">
+      {items.map((item) => (
+        <a href={item.href} class="flex items-center justify-between py-4 group">
+          <div>
+            <h3 class="font-semibold text-sm text-[#001E40] group-hover:text-[#006C4B] transition-colors">{item.title}</h3>
+            <p class="text-xs text-[#43474F] mt-0.5">{item.description}</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#C3C6D1] group-hover:text-[#006C4B] group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {items.map((item) => (
+        <a href={item.href} class="bg-white p-6 rounded-sm border border-[#C3C6D1]/15 hover:border-[#001E40] transition-colors">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="material-symbols-outlined text-2xl text-[#006C4B]" style="font-variation-settings: 'FILL' 1;">
+              {item.icon || 'arrow_forward'}
+            </span>
+            <h3 class="font-semibold text-[#1B1C1C]">{item.title}</h3>
+          </div>
+          <p class="text-sm text-[#43474F]">{item.description}</p>
+        </a>
+      ))}
+    </div>
+  )}
+</section>

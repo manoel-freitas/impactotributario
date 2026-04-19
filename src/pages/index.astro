@@ -1,0 +1,382 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Simulator from "../components/Simulator.vue";
+import NewsSection from "../components/NewsSection.astro";
+import type { ReformaData, NewsData } from "../lib/types.ts";
+
+let taxData: ReformaData;
+let newsData: NewsData = { fetchedAt: new Date().toISOString(), items: [] };
+
+try {
+  const mod = await import("../generated/tax-data.json");
+  taxData = mod.default as ReformaData;
+} catch {
+  const mod = await import("../data/reforma-base.json");
+  taxData = mod.default as ReformaData;
+}
+
+try {
+  const mod = await import("../generated/news.json");
+  newsData = mod.default as NewsData;
+} catch {
+  // No news yet
+}
+---
+
+<BaseLayout>
+
+  <!-- ─── Hero Section (MEI-focused) ──────────────────────────────────────────── -->
+  <section class="bg-[#F5F3F3] pt-16 pb-24 relative overflow-hidden border-b border-[#C3C6D1]/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+        <!-- Left column: headline + CTA -->
+        <div class="lg:col-span-5 pt-8">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#9AF5CA] text-[#006C4B] text-xs font-semibold uppercase tracking-wider mb-6">
+            <span class="inline-block w-2 h-2 bg-[#006C4B] rounded-full" aria-hidden="true"></span>
+            MEI
+          </span>
+          <h1 class="text-3xl sm:text-4xl lg:text-[3.5rem] leading-tight font-extrabold text-[#001E40] tracking-[-0.02em] mb-6">
+            Simulador da Reforma Tributária 2026
+          </h1>
+          <p class="text-lg text-[#43474F] mb-8 leading-relaxed">
+            Entenda por que o MEI é isento de CBS/IBS na reforma e como a nova estrutura afeta o seu negócio no dia a dia.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-8">
+            <a href="#simulador" class="inline-flex items-center gap-2 bg-[#001E40] hover:bg-[#003366] text-white font-semibold px-6 py-3 rounded-md transition-colors text-sm">
+              Simular agora →
+            </a>
+            <a href="/cronograma" class="inline-flex items-center gap-2 bg-white hover:bg-[#F5F3F3] text-[#001E40] font-semibold px-6 py-3 rounded-md border border-[#C3C6D1]/30 transition-colors text-sm">
+              Ver cronograma
+            </a>
+          </div>
+
+          <!-- Trust signals -->
+          <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-[#43474F]">
+            <span class="flex items-center gap-1"><span class="text-[#006C4B] font-bold" aria-hidden="true">✓</span> Baseado na LC 214/2025</span>
+            <span class="flex items-center gap-1"><span class="text-[#006C4B] font-bold" aria-hidden="true">✓</span> Isento de CBS/IBS</span>
+            <span class="flex items-center gap-1"><span class="text-[#006C4B] font-bold" aria-hidden="true">✓</span>Transição 2026–2033</span>
+          </div>
+        </div>
+
+        <!-- Right column: key data -->
+        <div class="lg:col-span-7 space-y-6">
+          <div>
+            <p class="text-[#43474F] text-xs font-semibold uppercase tracking-widest mb-1">Dados-chave da reforma</p>
+            <h2 class="text-2xl font-bold text-[#001E40]">Resumo do IVA Dual</h2>
+          </div>
+
+          <!-- M-11: inline stat strip -->
+          <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2 text-[#43474F]">
+            <span class="text-[#001E40] font-bold">IVA Dual <span class="font-normal text-sm text-[#43474F]">(CBS + IBS)</span></span>
+            <span class="text-[#C3C6D1]">|</span>
+            <span class="text-[#001E40] font-bold">2026–2033</span>
+            <span class="text-[#C3C6D1]">|</span>
+            <span class="text-[#006C4B] font-bold">~26,5% <span class="font-normal text-sm text-[#43474F]">alíquota ref.</span></span>
+            <span class="text-[#C3C6D1]">|</span>
+            <span class="text-[#001E40] font-bold">5 tributos <span class="font-normal text-sm text-[#43474F]">extintos</span></span>
+          </div>
+
+          <!-- L-01: Progressão bar -->
+          <div class="border-t-2 border-[#001E40] pt-5">
+            <div class="flex justify-between items-end mb-4">
+              <h3 class="font-bold text-[#001E40] text-sm">Progressão CBS + IBS (regime geral)</h3>
+              <span class="text-xs font-medium text-[#006C4B] bg-[#9AF5CA] px-2 py-1 rounded-md">Estimativa</span>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-12 font-semibold text-[#1B1C1C] tabular-nums text-sm">2026</div>
+                <div class="flex-1 h-7 bg-white rounded-sm overflow-hidden flex border border-[#C3C6D1]/20">
+                  <div class="bg-[#001E40] h-full w-[5%]" title="CBS 0,9%"></div>
+                  <div class="bg-[#006C4B] h-full w-[2%]" title="IBS 0,1%"></div>
+                </div>
+                <div class="w-20 text-right text-sm font-bold text-[#001E40] tabular-nums">1,00%</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-12 font-semibold text-[#1B1C1C] tabular-nums text-sm">2029</div>
+                <div class="flex-1 h-7 bg-white rounded-sm overflow-hidden flex border border-[#C3C6D1]/20">
+                  <div class="bg-[#001E40]/50 h-full w-[25%]" title="Impostos antigos"></div>
+                  <div class="bg-[#001E40] h-full w-[12%]" title="CBS"></div>
+                  <div class="bg-[#006C4B] h-full w-[8%]" title="IBS"></div>
+                </div>
+                <div class="w-20 text-right text-sm font-medium text-[#43474F] tabular-nums">Transição</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-12 font-semibold text-[#1B1C1C] tabular-nums text-sm">2033</div>
+                <div class="flex-1 h-7 bg-white rounded-sm overflow-hidden flex border border-[#C3C6D1]/20">
+                  <div class="bg-[#001E40] h-full w-[15%]" title="CBS"></div>
+                  <div class="bg-[#006C4B] h-full w-[12%]" title="IBS"></div>
+                </div>
+                <div class="w-20 text-right text-sm font-bold text-[#001E40] tabular-nums">~26,5%</div>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-4 text-xs text-[#43474F]">
+              <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-[#001E40] inline-block" aria-hidden="true"></span> CBS (Federal)</div>
+              <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-[#006C4B] inline-block" aria-hidden="true"></span> IBS (Est/Mun)</div>
+              <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-[#001E40]/50 inline-block" aria-hidden="true"></span> Impostos Antigos</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Comparison Section (Timeline Cards) ──────────────────────────────���─────────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-16">
+    <h2 class="text-3xl font-bold text-[#001E40] mb-12 text-center tracking-tight">Linha do Tempo: Impacto no MEI</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Hoje -->
+      <div class="bg-white p-8 rounded-md border border-[#C3C6D1]/20 relative overflow-hidden group hover:bg-[#F5F3F3] transition-colors">
+        <div class="absolute top-0 left-0 w-full h-1 bg-[#E3E2E2] group-hover:bg-[#001E40] transition-colors"></div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-[#001E40]" style="font-size: 24px;">calendar_today</span>
+          <h3 class="text-xl font-bold text-[#001E40]">Hoje</h3>
+        </div>
+        <p class="text-[#43474F] mb-6">Sistema atual com recolhimento unificado no DAS.</p>
+        <div class="bg-[#F5F3F3] p-4 rounded-sm">
+          <ul class="space-y-3 text-sm text-[#1B1C1C]">
+            <li class="flex items-start">
+              <span class="material-symbols-outlined text-[#006C4B] mr-2" style="font-size: 20px;">check_circle</span>
+              Valor fixo mensal
+            </li>
+            <li class="flex items-start">
+              <span class="material-symbols-outlined text-[#006C4B] mr-2" style="font-size: 20px;">check_circle</span>
+              Isenção de impostos federais (IR, PIS, COFINS, IPI, CSLL)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Transição -->
+      <div class="bg-white p-8 rounded-md border border-[#C3C6D1]/20 relative overflow-hidden group hover:bg-[#F5F3F3] transition-colors">
+        <div class="absolute top-0 left-0 w-full h-1 bg-[#E3E2E2] group-hover:bg-[#002F74] transition-colors"></div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-size: 24px;">swap_horiz</span>
+          <h3 class="text-xl font-bold text-[#001E40]">Durante a transição</h3>
+        </div>
+        <p class="text-[#43474F] mb-6">Fase de adaptação do sistema tributário nacional (2026-2032).</p>
+        <div class="bg-[#F5F3F3] p-4 rounded-sm">
+          <ul class="space-y-3 text-sm text-[#1B1C1C]">
+            <li class="flex items-start">
+              <span class="material-symbols-outlined text-[#006C4B] mr-2" style="font-size: 20px;">check_circle</span>
+              Manutenção do regime atual
+            </li>
+            <li class="flex items-start">
+              <span class="material-symbols-outlined text-[#006C4B] mr-2" style="font-size: 20px;">check_circle</span>
+              Opção de aderir à CBS/IBS se vantajoso
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Depois de 2033 -->
+      <div class="bg-white p-8 rounded-md border border-[#C3C6D1]/20 relative overflow-hidden group hover:bg-[#F5F3F3] transition-colors">
+        <div class="absolute top-0 left-0 w-full h-1 bg-[#E3E2E2] group-hover:bg-[#006C4B] transition-colors"></div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-[#006C4B]" style="font-size: 24px;">update</span>
+          <h3 class="text-xl font-bold text-[#001E40]">Depois de 2033</h3>
+        </div>
+        <p class="text-[#43474F] mb-6">Implementação total do novo sistema (CBS/IBS).</p>
+        <div class="bg-[#9AF5CA] p-4 rounded-sm border-l-4 border-[#006C4B]">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="material-symbols-outlined text-[#006C4B]" style="font-size: 20px;">verified</span>
+            <span class="font-bold text-[#001E40] text-lg">Isento de CBS/IBS</span>
+          </div>
+          <p class="text-sm text-[#43474F]">O MEI permanece fora da incidência da nova Contribuição sobre Bens e Serviços (CBS) e do Imposto sobre Bens e Serviços (IBS).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Simulator ──────────────────────────────────────────────────────────────── -->
+  <section id="simulador" class="max-w-7xl mx-auto px-4 sm:px-8 py-20">
+    <div class="mb-8">
+      <h2 class="text-3xl font-bold text-[#001E40] mb-2">Simulador de Impacto</h2>
+      <p class="text-[#43474F]">Calcule como a reforma afeta sua empresa com base no regime tributário e setor de atuação.</p>
+    </div>
+    <div class="py-6 sm:py-8">
+      <Simulator client:load taxData={taxData} />
+    </div>
+  </section>
+
+  <!-- ─── Quick explainer — numbered flow ─────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 pb-10">
+    <h2 class="text-2xl font-bold text-[#001E40] mb-8">O que você precisa saber</h2>
+    <div class="relative ml-4 border-l-2 border-[#C3C6D1]/30">
+      {[
+        {
+          num: "01",
+          title: "2026 é ano de teste",
+          desc: "CBS e IBS aparecem na nota fiscal, mas <strong class='text-[#001E40]'>não são cobrados</strong> em 2026. O impacto real começa em 2027.",
+        },
+        {
+          num: "02",
+          title: "MEI está isento",
+          desc: "MEI com faturamento até R$81.000/ano <strong class='text-[#001E40]'>não paga CBS nem IBS</strong>. Nanoempreendedor (até R$40.500/ano) também está isento.",
+        },
+        {
+          num: "03",
+          title: "Transição gradual até 2033",
+          desc: "PIS, COFINS, ICMS e ISS são eliminados progressivamente e substituídos por CBS e IBS ao longo de 7 anos. Nenhum tributo some de vez.",
+        },
+      ].map((item) => (
+        <div class="mb-8 ml-6 relative last:mb-0">
+          <div class="absolute -left-[33px] w-4 h-4 rounded-full bg-[#006C4B] border-2 border-[#FBF9F9]"></div>
+          <span class="text-xs font-bold text-[#006C4B] tracking-wider">{item.num}</span>
+          <h3 class="font-bold text-[#001E40] text-lg mt-0.5 mb-1">{item.title}</h3>
+          <p class="text-sm text-[#43474F] leading-relaxed" set:html={item.desc} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── Transition Timeline ─────────────────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 pb-16">
+    <h2 class="text-2xl font-bold text-[#001E40] mb-8">Cronograma da transição</h2>
+
+    <!-- Desktop: horizontal bar -->
+    <div class="hidden md:block">
+      <div class="flex items-start justify-between relative">
+        <div class="absolute top-4 left-0 right-0 h-0.5 bg-[#C3C6D1]/40"></div>
+        {[
+          { year: "2026", label: "Ano de Teste", desc: "CBS 0,9% + IBS 0,1% na NF, sem cobrança efetiva", dot: "#006C4B" },
+          { year: "2027", label: "CBS entra", desc: "CBS 8,4% em vigor. PIS/COFINS zerados gradualmente", dot: "#5E6F83" },
+          { year: "2029", label: "IBS inicia", desc: "IBS gradual. ICMS/ISS reduzidos -10%/ano", dot: "#5E6F83" },
+          { year: "2033", label: "Sistema novo", desc: "Transição completa. 5 tributos extintos definitivamente", dot: "#001E40" },
+        ].map((item) => (
+          <div class="relative flex-1 text-center px-2">
+            <div class="w-8 h-8 rounded-full mx-auto border-4 border-[#FBF9F9] z-10 relative" style={`background:${item.dot}`}></div>
+            <p class="text-xl font-extrabold text-[#001E40] mt-3">{item.year}</p>
+            <p class="font-semibold text-xs text-[#001E40] mt-0.5">{item.label}</p>
+            <p class="text-xs text-[#43474F] leading-relaxed mt-1 max-w-[140px] mx-auto">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile: vertical compact -->
+    <div class="md:hidden space-y-0 border-l-2 border-[#001E40] ml-4">
+      {[
+        { year: "2026", label: "Ano de Teste", desc: "CBS 0,9% + IBS 0,1% na NF, sem cobrança efetiva", dot: "#006C4B" },
+        { year: "2027", label: "CBS entra", desc: "CBS 8,4% em vigor. PIS/COFINS zerados gradualmente", dot: "#5E6F83" },
+        { year: "2029", label: "IBS inicia", desc: "IBS gradual. ICMS/ISS reduzidos -10%/ano", dot: "#5E6F83" },
+        { year: "2033", label: "Sistema novo", desc: "Transição completa. 5 tributos extintos definitivamente", dot: "#001E40" },
+      ].map((item) => (
+        <div class="pl-6 py-4 relative">
+          <div class="absolute -left-[9px] top-5 w-4 h-4 rounded-full border-2 border-[#FBF9F9]" style={`background:${item.dot}`}></div>
+          <p class="font-extrabold text-[#001E40]">{item.year} <span class="font-semibold text-sm text-[#43474F]">{item.label}</span></p>
+          <p class="text-xs text-[#43474F] leading-relaxed mt-0.5">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href="/cronograma" class="text-sm font-semibold text-[#006C4B] hover:underline">Ver cronograma completo →</a>
+    </div>
+  </section>
+
+  <!-- ─── News ──────────────────────────────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 pb-12">
+    <NewsSection items={newsData.items} fetchedAt={newsData.fetchedAt} />
+  </section>
+
+  <!-- ─── FAQ (SEO) ────────────────────────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 pb-20">
+    <h2 class="text-2xl font-bold text-[#001E40] mb-8">Perguntas frequentes</h2>
+
+    <div class="space-y-2">
+      {[
+        {
+          q: "O que é a Reforma Tributária de 2026?",
+          a: "A maior reforma tributária brasileira em 30 anos. A LC 214/2025 substitui cinco tributos (PIS, COFINS, ICMS, ISS e IPI) por dois novos: CBS (federal) e IBS (estadual/municipal), formando o IVA Dual. A transição é gradual de 2026 a 2033.",
+        },
+        {
+          q: "Em 2026 eu vou pagar mais imposto por causa da reforma?",
+          a: "Não. Em 2026, CBS (0,9%) e IBS (0,1%) aparecem na nota fiscal apenas com caráter informativo — nenhum valor extra é cobrado. Os contribuintes ficam dispensados do recolhimento em 2026. O impacto real começa em 2027 para a CBS e em 2029 para o IBS.",
+        },
+        {
+          q: "MEI vai ser afetado pela Reforma Tributária?",
+          a: "Não! O MEI com faturamento até R$81.000/ano está isento de CBS e IBS pela LC 214/2025. O regime do MEI é preservado como categoria especial. O nanoempreendedor (nova categoria, faturamento até R$40.500/ano) também tem isenção total.",
+        },
+        {
+          q: "O Simples Nacional vai acabar com a Reforma?",
+          a: "Não. O Simples Nacional é mantido pela LC 214/2025. CBS e IBS serão embutidos no DAS com alíquotas menores do que no regime geral. Empresas do Simples poderão optar por recolher IBS e CBS 'por fora' do DAS se isso for mais vantajoso. Para Simples Nacional, o impacto começa em 2027.",
+        },
+        {
+          q: "Quais setores têm redução de alíquota na reforma?",
+          a: "Saúde e educação têm redução de 60%. Transporte público coletivo tem redução de 40%. Profissões regulamentadas (advogados, contadores, engenheiros, médicos) têm redução de 30%. Produtos da cesta básica têm alíquota zero. Agronegócio tem regime diferenciado.",
+        },
+        {
+          q: "O que é Split Payment e como vai me afetar?",
+          a: "A partir de 2027, o CBS será retido automaticamente no momento do pagamento (cartão de crédito, Pix). O sistema bancário ou a adquirente separará automaticamente a parte do imposto antes de repassar o valor à empresa. Isso impacta o fluxo de caixa — o imposto não fica mais na conta da empresa por dias antes de ser pago.",
+        },
+      ].map((faq) => (
+        <details class="group bg-white border border-[#C3C6D1]/20 rounded-md">
+          <summary class="flex justify-between items-center px-6 py-4 cursor-pointer font-semibold text-[#001E40] list-none">
+            {faq.q}
+            <span class="ml-4 shrink-0 text-[#43474F] group-open:rotate-180 transition-transform duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-5 text-sm text-[#43474F] leading-relaxed border-t border-[#C3C6D1]/20 pt-4">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é a Reforma Tributária de 2026?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A maior reforma tributária brasileira em 30 anos. A LC 214/2025 substitui cinco tributos (PIS, COFINS, ICMS, ISS e IPI) por dois novos: CBS (federal) e IBS (estadual/municipal), formando o IVA Dual. A transição é gradual de 2026 a 2033." }
+        },
+        {
+          "@type": "Question",
+          "name": "Em 2026 eu vou pagar mais imposto por causa da reforma?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Não. Em 2026, CBS (0,9%) e IBS (0,1%) aparecem na nota fiscal apenas com caráter informativo — nenhum valor extra é cobrado. Os contribuintes ficam dispensados do recolhimento em 2026. O impacto real começa em 2027 para a CBS e em 2029 para o IBS." }
+        },
+        {
+          "@type": "Question",
+          "name": "MEI vai ser afetado pela Reforma Tributária?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Não! O MEI com faturamento até R$81.000/ano está isento de CBS e IBS pela LC 214/2025. O regime do MEI é preservado como categoria especial. O nanoempreendedor (nova categoria, faturamento até R$40.500/ano) também tem isenção total." }
+        },
+        {
+          "@type": "Question",
+          "name": "O Simples Nacional vai acabar com a Reforma?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Não. O Simples Nacional é mantido pela LC 214/2025. CBS e IBS serão embutidos no DAS com alíquotas menores do que no regime geral. Empresas do Simples poderão optsr por recolher IBS e CBS 'por fora' do DAS se isso for mais vantajoso. Para Simples Nacional, o impacto começa em 2027." }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais setores têm redução de alíquota na reforma?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Saúde e educação têm redução de 60%. Transporte público coletivo tem redução de 40%. Profissões regulamentadas (advogados, contadores, engenheiros, médicos) têm redução de 30%. Produtos da cesta básica têm alíquota zero. Agroneggocio tem regime diferenciado." }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é Split Payment e como vai me afetar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A partir de 2027, o CBS será retido automaticamente no momento do pagamento (cartão de crédito, Pix). O sistema bancário ou a adquirente separará automaticamente a parte do imposto antes de repassar o valor à empresa. Isso impacta o fluxo de caixa — o imposto não fica mais na conta da empresa por dias antes de ser pago." }
+        },
+      ]
+    })} />
+  </section>
+
+  <!-- ─── CTA Section ─────────────────────────────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-20 text-center">
+    <div class="bg-[#E3E2E2] p-12 rounded-md border border-[#C3C6D1]/20 inline-block max-w-2xl w-full">
+      <h2 class="text-2xl font-bold text-[#001E40] mb-4">Seu faturamento vai aumentar?</h2>
+      <p class="text-[#43474F] mb-8">Caso sua empresa cresça e saia do limite do MEI, veja como as novas regras se aplicam ao Simples Nacional e ao Lucro Presumido.</p>
+<a href="/#simulador" class="inline-flex items-center gap-2 bg-[#001E40] hover:bg-[#003366] text-white font-semibold px-8 py-4 rounded-md transition-colors">
+          Simule outros regimes
+        </a>
+    </div>
+  </section>
+
+</BaseLayout>

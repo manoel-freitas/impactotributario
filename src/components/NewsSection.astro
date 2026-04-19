@@ -1,0 +1,136 @@
+---
+import type { NewsItem } from "../lib/types.ts";
+
+interface Props {
+  items: NewsItem[];
+  fetchedAt: string;
+}
+
+const { items, fetchedAt } = Astro.props;
+
+function formatDate(iso: string) {
+  try {
+    return new Date(iso).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return iso;
+  }
+}
+
+function timeAgo(iso: string) {
+  try {
+    const diff = Date.now() - new Date(iso).getTime();
+    const hours = Math.floor(diff / 3_600_000);
+    const days = Math.floor(hours / 24);
+    if (hours < 1) return "agora há pouco";
+    if (hours < 24) return `há ${hours}h`;
+    if (days === 1) return "ontem";
+    return `há ${days} dias`;
+  } catch {
+    return "";
+  }
+}
+
+function getDomain(url: string) {
+  try {
+    return new URL(url).hostname.replace("www.", "");
+  } catch {
+    return "";
+  }
+}
+
+const sourceColors: Record<string, string> = {
+  "g1.globo.com": "#e8000d",
+  "valor.globo.com": "#0060a8",
+  "agenciabrasil.ebc.com.br": "#005c2b",
+  "folha.uol.com.br": "#1a1a1a",
+  "exame.com": "#000000",
+  "infomoney.com.br": "#f97316",
+  "contabeis.com.br": "#2563eb",
+  "jota.info": "#7c3aed",
+};
+
+function getSourceColor(url: string): string {
+  const domain = getDomain(url);
+  return sourceColors[domain] ?? "#001E40";
+}
+---
+
+<section class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold text-[#001E40]">Últimas notícias sobre a Reforma</h2>
+    <span class="text-xs text-[#43474F] bg-[#F5F3F3] px-2 py-1 rounded">
+      Atualizado em {formatDate(fetchedAt)}
+    </span>
+  </div>
+
+  {
+    items.length === 0 ? (
+      <div class="bg-[#F5F3F3] border border-[#C3C6D1]/20 p-4 rounded-md">
+        <span class="material-symbols-outlined text-[#43474F] mr-1" style="font-variation-settings: 'FILL' 1;">info</span>Nenhuma notícia disponível no momento. Tente novamente mais tarde.
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {items.map((item) => (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="news-card block bg-white border border-[#C3C6D1]/20 rounded-md overflow-hidden hover:bg-[#F5F3F3] transition-colors"
+          >
+            {item.imageUrl ? (
+              <img
+                src={item.imageUrl}
+                alt=""
+                class="object-cover w-full h-40"
+                loading="lazy"
+              />
+            ) : (
+              <div
+                class="w-full h-16 flex items-center gap-2 px-4"
+                style={`background-color: ${getSourceColor(item.link)}`}
+              >
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${getDomain(item.link)}&sz=32`}
+                  width="20"
+                  height="20"
+                  loading="lazy"
+                  alt={item.title}
+                />
+                <span class="text-white text-xs font-medium truncate opacity-90">
+                  {getDomain(item.link)}
+                </span>
+              </div>
+            )}
+            <div class="p-4 space-y-2">
+              <div class="flex items-center justify-between gap-2 text-xs text-[#43474F]">
+                <span class="bg-[#F5F3F3] px-2 py-0.5 rounded text-xs">{getDomain(item.link)}</span>
+                <span>{timeAgo(item.isoDate)}</span>
+              </div>
+              <h3 class="font-semibold text-sm leading-snug line-clamp-3">
+                {item.title}
+              </h3>
+              {item.description && (
+                <p class="text-xs text-[#43474F] line-clamp-2">
+                  {item.description}
+                </p>
+              )}
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-xs text-[#001E40] font-medium">Ler mais →</span>
+                <span class="text-xs text-[#43474F]/50">{formatDate(item.isoDate)}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )
+  }
+
+  <p class="text-xs text-center text-[#43474F]/50">
+    Notícias agregadas automaticamente de fontes públicas.
+    Conteúdo de responsabilidade dos veículos originais.
+  </p>
+</section>

@@ -1,0 +1,332 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SeeAlso from "../components/SeeAlso.astro";
+---
+<BaseLayout
+  title="Cronograma da Reforma Tributária 2026–2033 — CBS e IBS"
+  description="Entenda o cronograma completo da Reforma Tributária brasileira de 2026 a 2033. Quando CBS e IBS entram em vigor, quando ICMS e ISS são extintos."
+>
+<script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cronograma da Reforma Tributária 2026–2033 — CBS e IBS",
+    "description": "Entenda o cronograma completo da Reforma Tributária brasileira de 2026 a 2033. Quando CBS e IBS entram em vigor, quando ICMS e ISS são extintos.",
+    "url": "https://simuladortributario.com.br/cronograma",
+    "image": "https://simuladortributario.com.br/og-image.png",
+    "datePublished": "2025-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Simulador Reforma Tributária"
+    }
+  })} />
+  
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-6 mb-16 mt-8">
+    <div class="bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-none p-12 relative overflow-hidden shadow-[0_8px_24px_rgba(27,28,28,0.04)]">
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-fixed-dim/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-12 w-64 h-64 bg-surface-tint/20 rounded-full blur-2xl"></div>
+      <div class="relative z-10 max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-container-lowest/20 backdrop-blur-md">
+            <span class="material-symbols-outlined text-on-primary">timeline</span>
+          </span>
+          <span class="font-label text-sm uppercase tracking-widest text-primary-fixed">Visão Geral</span>
+        </div>
+        <h1 class="font-headline font-black text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-6">
+          Cronograma Detalhado da Reforma (2026-2033)
+        </h1>
+        <p class="font-body text-lg text-primary-fixed-dim max-w-2xl leading-relaxed">
+          A transição para o novo modelo tributário ocorrerá em fases estruturadas para garantir segurança jurídica e adaptação sistêmica. Acompanhe os marcos regulatórios abaixo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Layout: Timeline & Ledger -->
+  <section class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left Column: Visual Journey -->
+      <div class="lg:col-span-4 sticky top-32">
+        <div class="bg-surface-container-low p-8 rounded-none">
+          <h2 class="font-headline font-bold text-xl text-on-surface mb-8 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">route</span>
+            Jornada de Implementação
+          </h2>
+          <div class="relative">
+            <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-outline-variant/30"></div>
+            <div class="space-y-10">
+              <!-- Step 1 -->
+              <div class="relative flex gap-6">
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 z-10 shadow-[0_4px_12px_rgba(0,30,64,0.2)]">
+                  <div class="w-2.5 h-2.5 rounded-full bg-on-primary"></div>
+                </div>
+                <div class="pt-1">
+                  <div class="font-headline font-bold text-2xl text-primary mb-1">2026</div>
+                  <div class="font-body text-sm font-semibold text-on-surface mb-2">Fase de Teste</div>
+                  <p class="font-body text-xs text-on-surface-variant leading-relaxed">Implementação da CBS e IBS com alíquota teste de 1%. Foco em adaptação sistêmica sem impacto na carga atual.</p>
+                </div>
+              </div>
+              <!-- Step 2 -->
+              <div class="relative flex gap-6">
+                <div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center shrink-0 z-10">
+                  <div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                </div>
+                <div class="pt-1">
+                  <div class="font-headline font-bold text-2xl text-on-surface mb-1">2027</div>
+                  <div class="font-body text-sm font-semibold text-on-surface mb-2">Transição Federal</div>
+                  <p class="font-body text-xs text-on-surface-variant leading-relaxed">CBS entra em vigor pleno. Extinção do PIS e Cofins. Alíquota do IPI reduzida a zero (exceto ZFM).</p>
+                </div>
+              </div>
+              <!-- Step 3 -->
+              <div class="relative flex gap-6">
+                <div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-outline-variant flex items-center justify-center shrink-0 z-10">
+                  <div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+                </div>
+                <div class="pt-1">
+                  <div class="font-headline font-bold text-2xl text-on-surface-variant mb-1">2028 - 2032</div>
+                  <div class="font-body text-sm font-semibold text-on-surface-variant mb-2">Transição Estadual/Municipal</div>
+                  <p class="font-body text-xs text-on-surface-variant leading-relaxed">Aumento gradual do IBS e redução proporcional do ICMS e ISS (1/10 ao ano).</p>
+                </div>
+              </div>
+              <!-- Step 4 -->
+              <div class="relative flex gap-6">
+                <div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-outline-variant flex items-center justify-center shrink-0 z-10">
+                  <span class="material-symbols-outlined text-[16px] text-outline-variant">flag</span>
+                </div>
+                <div class="pt-1">
+                  <div class="font-headline font-bold text-2xl text-on-surface-variant mb-1">2033</div>
+                  <div class="font-body text-sm font-semibold text-on-surface-variant mb-2">Vigência Integral</div>
+                  <p class="font-body text-xs text-on-surface-variant leading-relaxed">Novo sistema tributário 100% operacional. Fim definitivo do ICMS e ISS.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: The Architectural Ledger -->
+      <div class="lg:col-span-8 space-y-8">
+        <!-- 2026 Block -->
+        <div class="bg-surface-container-lowest p-8 shadow-[0_8px_24px_rgba(27,28,28,0.02)]">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-headline font-bold text-2xl text-primary tracking-tight">Período Base: 2026</h3>
+            <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Fase Ativa</span>
+          </div>
+          <div class="bg-surface p-6 mb-6 border border-outline-variant/15">
+            <h4 class="font-label text-sm font-semibold text-on-surface mb-4 uppercase tracking-wider">Parâmetros Técnicos</h4>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-xs text-on-surface-variant mb-1">Alíquota CBS (Teste)</div>
+                <div class="font-body tabular-nums text-lg font-medium">0,9%</div>
+              </div>
+              <div>
+                <div class="text-xs text-on-surface-variant mb-1">Alíquota IBS (Teste)</div>
+                <div class="font-body tabular-nums text-lg font-medium">0,1%</div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-primary-fixed/30 p-4 border-l-4 border-primary">
+            <div class="flex gap-3">
+              <span class="material-symbols-outlined text-primary mt-0.5">info</span>
+              <p class="font-body text-sm text-on-primary-fixed-variant">
+                <strong>Nota Educacional:</strong> O ano de 2026 funcionará como um ambiente de homologação real. Os impostos recolhidos sob a nova alíquota de 1% serão deduzidos do PIS/Cofins atuais, garantindo que não haja aumento de carga tributária durante o teste.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2027 Block -->
+        <div class="bg-surface-container-lowest p-8 shadow-[0_8px_24px_rgba(27,28,28,0.02)] relative overflow-hidden">
+          <div class="absolute inset-0 bg-surface/40 backdrop-blur-[2px] z-0 pointer-events-none"></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight">Período Base: 2027</h3>
+            </div>
+            <div class="bg-surface p-6 mb-6 border border-outline-variant/15">
+              <h4 class="font-label text-sm font-semibold text-on-surface mb-4 uppercase tracking-wider">Movimentações Estruturais</h4>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                  <div>
+                    <div class="font-medium text-sm text-on-surface">Vigência Plena CBS</div>
+                    <div class="text-xs text-on-surface-variant">Alíquota definida pelo Senado Federal.</div>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-error text-sm mt-0.5">cancel</span>
+                  <div>
+                    <div class="font-medium text-sm text-on-surface">Extinção de Tributos Antigos</div>
+                    <div class="text-xs text-on-surface-variant">Fim definitivo da cobrança de PIS e Cofins.</div>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                  <div>
+                    <div class="font-medium text-sm text-on-surface">Split Payment Obrigatório</div>
+                    <div class="text-xs text-on-surface-variant">Retenção automática no Pix/cartão.</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-surface-container-low p-4">
+              <div class="flex gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant mt-0.5">school</span>
+                <p class="font-body text-sm text-on-surface-variant">
+                  <strong>Nota Educacional:</strong> A partir de 2027, a União migra completamente para o novo sistema. O IPI não é extinto, mas tem suas alíquotas zeradas, atuando apenas como mecanismo de proteção para a Zona Franca de Manaus.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2028 Block -->
+        <div class="bg-surface-container-lowest p-8 shadow-[0_8px_24px_rgba(27,28,28,0.02)]">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight">Período Base: 2028</h3>
+          </div>
+          <div class="bg-surface p-6 mb-6 border border-outline-variant/15">
+            <h4 class="font-label text-sm font-semibold text-on-surface mb-4 uppercase tracking-wider">Status do Sistema</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant text-sm mt-0.5">remove</span>
+                <div>
+                  <div class="font-medium text-sm text-on-surface">CBS Estabilizada</div>
+                  <div class="text-xs text-on-surface-variant">Alíquota plena mantida (~8,4%).</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant text-sm mt-0.5">remove</span>
+                <div>
+                  <div class="font-medium text-sm text-on-surface">IBS em Espera</div>
+                  <div class="text-xs text-on-surface-variant">Ainda não exigido. Preparação para 2029.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-surface-container-low p-4">
+            <div class="flex gap-3">
+              <span class="material-symbols-outlined text-on-surface-variant mt-0.5">sync</span>
+              <p class="font-body text-sm text-on-surface-variant">
+                <strong>Nota Educacional:</strong> Período de consolidação do novo modelo federal. Empresas devem usar este ano para adaptar sistemas fiscais e processos internos para a transição estadual/municipal que se aproxima.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2029-2032 Block (Tabular) -->
+        <div class="bg-surface-container-lowest p-8 shadow-[0_8px_24px_rgba(27,28,28,0.02)] relative overflow-hidden">
+          <div class="absolute inset-0 bg-surface/60 backdrop-blur-[4px] z-0 pointer-events-none"></div>
+          <div class="relative z-10">
+            <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight mb-6">Período Base: 2029 — 2032</h3>
+            <div class="overflow-x-auto hide-scrollbar mb-6">
+              <div class="min-w-[500px]">
+                <div class="grid grid-cols-5 gap-2 border-b-2 border-surface-container-high pb-3 mb-3">
+                  <div class="font-label text-xs font-semibold uppercase text-on-surface-variant col-span-1">Ano</div>
+                  <div class="font-label text-xs font-semibold uppercase text-on-surface-variant col-span-2">Redução ICMS/ISS</div>
+                  <div class="font-label text-xs font-semibold uppercase text-on-surface-variant col-span-2">Aumento IBS</div>
+                </div>
+                <div class="space-y-3">
+                  <div class="grid grid-cols-5 gap-2 items-center bg-surface p-2">
+                    <div class="font-body tabular-nums text-sm font-medium">2029</div>
+                    <div class="font-body tabular-nums text-sm text-error col-span-2">-10%</div>
+                    <div class="font-body tabular-nums text-sm text-secondary col-span-2">+ Proporcional</div>
+                  </div>
+                  <div class="grid grid-cols-5 gap-2 items-center bg-surface-container-low p-2">
+                    <div class="font-body tabular-nums text-sm font-medium">2030</div>
+                    <div class="font-body tabular-nums text-sm text-error col-span-2">-20%</div>
+                    <div class="font-body tabular-nums text-sm text-secondary col-span-2">+ Proporcional</div>
+                  </div>
+                  <div class="grid grid-cols-5 gap-2 items-center bg-surface p-2">
+                    <div class="font-body tabular-nums text-sm font-medium">2031</div>
+                    <div class="font-body tabular-nums text-sm text-error col-span-2">-30%</div>
+                    <div class="font-body tabular-nums text-sm text-secondary col-span-2">+ Proporcional</div>
+                  </div>
+                  <div class="grid grid-cols-5 gap-2 items-center bg-surface-container-low p-2">
+                    <div class="font-body tabular-nums text-sm font-medium">2032</div>
+                    <div class="font-body tabular-nums text-sm text-error col-span-2">-40%</div>
+                    <div class="font-body tabular-nums text-sm text-secondary col-span-2">+ Proporcional</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-surface-container-low p-4">
+              <div class="flex gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant mt-0.5">account_tree</span>
+                <p class="font-body text-sm text-on-surface-variant">
+                  <strong>Nota Educacional:</strong> Esta é a fase de calibração federativa. Estados e Municípios reduzem gradativamente seus impostos antigos enquanto o IBS ganha tração, evitando choques de arrecadação.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2033 Block -->
+        <div class="bg-surface-container-lowest p-8 shadow-[0_8px_24px_rgba(27,28,28,0.02)]">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-headline font-bold text-2xl text-secondary tracking-tight">Período Base: 2033</h3>
+            <span class="bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Conclusão</span>
+          </div>
+          <div class="bg-surface p-6 mb-6 border border-outline-variant/15">
+            <h4 class="font-label text-sm font-semibold text-on-surface mb-4 uppercase tracking-wider">Tributos Extintos</h4>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-error text-sm">close</span>
+                <span class="text-sm text-on-surface">PIS</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-error text-sm">close</span>
+                <span class="text-sm text-on-surface">COFINS</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-error text-sm">close</span>
+                <span class="text-sm text-on-surface">ICMS</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-error text-sm">close</span>
+                <span class="text-sm text-on-surface">ISS</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-error text-sm">close</span>
+                <span class="text-sm text-on-surface">IPI</span>
+              </div>
+            </div>
+          </div>
+          <div class="bg-secondary-container p-4">
+            <div class="flex gap-3">
+              <span class="material-symbols-outlined text-on-secondary mt-0.5">check_circle</span>
+              <p class="font-body text-sm text-on-secondary">
+                <strong>Novo Sistema:</strong> CBS e IBS em vigor com alíquotas plenas. Alíquota combinada estimada: 26–28%. Transição concluída após 7 anos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="mt-8 alert alert-warning text-sm">
+          <span class="material-symbols-outlined mr-1" style="font-variation-settings: 'FILL' 1;">warning</span>
+          <span>
+            As alíquotas exatas de CBS e IBS ainda serão definidas por lei complementar.
+            Os percentuais acima são estimativas baseadas na EC 132/2023 e LC 214/2025.
+            Consulte a Receita Federal e seu contador para informações oficiais.
+          </span>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-6 flex justify-center">
+          <a href="/" class="btn btn-primary">→ Simule o impacto no seu negócio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SeeAlso 
+    variant="cards" 
+    items={[
+      { href: "/mei", title: "MEI e a Reforma", description: "MEI está isento de CBS e IBS — entenda os detalhes", icon: "check_circle" },
+      { href: "/simples-nacional", title: "Simples Nacional", description: "Como CBS e IBS entram no DAS a partir de 2027", icon: "store" },
+      { href: "/#simulador", title: "Simulador Gratuito", description: "Calcule o impacto real no seu negócio", icon: "calculate" }
+    ]} 
+  />
+</BaseLayout>

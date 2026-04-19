@@ -1,0 +1,21 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+---<BaseLayout 
+  title="Página não encontrada — Simulador Tributário"
+  robots="noindex, nofollow"
+>
+  <div class="container mx-auto max-w-2xl px-4 py-20 text-center">
+    <div class="material-symbols-outlined text-8xl mb-6" style="font-variation-settings: 'FILL' 1;">balance</div>
+    <h1 class="text-4xl font-bold mb-4">404 — Página não encontrada</h1>
+    <p class="text-base-content/60 mb-8">
+      Esta página não existe ou foi movida. Mas a Reforma Tributária existe —
+      e você pode simular o impacto agora mesmo.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/" class="btn btn-primary"><span class="material-symbols-outlined mr-1">bolt</span>Simular agora</a>
+      <a href="/cronograma" class="btn btn-outline"><span class="material-symbols-outlined mr-1">calendar_month</span>Ver cronograma</a>
+      <a href="/glossario" class="btn btn-ghost"><span class="material-symbols-outlined mr-1">menu_book</span>Glossário</a>
+    </div>
+  </div>
+</BaseLayout>

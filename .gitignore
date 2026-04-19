@@ -1,0 +1,24 @@
+# Build output
+dist/
+.astro/
+
+# Generated data (rebuilt on every deploy)
+src/generated/news.json
+src/generated/tax-data.json
+
+# Dependencies
+node_modules/
+
+# Env
+.env
+.env.local
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

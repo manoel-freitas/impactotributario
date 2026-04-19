@@ -1,0 +1,27 @@
+{
+  "name": "reforma-tributaria",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/generate-og.mjs && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "generate-og": "node scripts/generate-og.mjs"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.5",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vue": "^6.0.1",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^5.7.0",
+    "daisyui": "^5.0.0",
+    "tailwindcss": "^4.1.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

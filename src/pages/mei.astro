@@ -1,0 +1,272 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SeeAlso from "../components/SeeAlso.astro";
+---
+<BaseLayout
+  title="MEI e a Reforma Tributária 2026 — Isento de CBS e IBS"
+  description="MEI está isento de CBS e IBS. Entenda o que a Reforma Tributária muda (ou não) para o Microempreendedor Individual. Guia completo 2026."
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "MEI e a Reforma Tributária 2026 — Isento de CBS e IBS",
+    "description": "MEI está isento de CBS e IBS. Entenda o que a Reforma Tributária muda (ou não) para o Microempreendedor Individual. Guia completo 2026.",
+    "url": "https://simuladortributario.com.br/mei",
+    "image": "https://simuladortributario.com.br/og-image.png",
+    "datePublished": "2025-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Simulador Reforma Tributária"
+    }
+  })} />
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-6">
+        <span class="inline-flex items-center px-3 py-1 bg-[#9AF5CA] text-[#005138] text-sm font-semibold rounded-full">
+          MEI
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-headline font-extrabold text-[#001E40] tracking-tighter leading-[1.1]">
+          Reforma Tributária para MEI
+        </h1>
+        <p class="text-lg md:text-xl text-[#43474F] leading-relaxed max-w-lg">
+          O Microempreendedor Individual <strong>está isento</strong> de CBS e IBS.
+          Entenda o que muda e o que você precisa fazer.
+        </p>
+      </div>
+      
+      <!-- Stat Card (sem imagem externa) -->
+      <div class="relative">
+        <div class="bg-[#001E40] rounded-2xl p-8 text-white">
+          <div class="text-sm text-[#9AF5CA] font-semibold uppercase tracking-wide mb-2">
+            Isenção confirmada
+          </div>
+          <div class="text-5xl font-headline font-bold mb-1">R$0</div>
+          <div class="text-lg text-white/70">CBS + IBS por ano</div>
+          <div class="mt-6 pt-6 border-t border-white/20">
+            <div class="text-sm text-white/50">Limite: faturamento até R$81.000/ano</div>
+            <div class="text-sm text-white/50">Base legal: LC 214/2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl md:text-3xl font-headline font-bold text-[#001E40] mb-12">
+      Linha do Tempo: Impacto no MEI
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-8 md:gap-6">
+      <!-- Hoje -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#001E40]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">Hoje</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">Sistema atual com DAS mensal unificado.</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            Valor fixo mensal
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            Isento de IR, PIS, COFINS
+          </li>
+        </ul>
+      </article>
+
+      <!-- Transição -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-variation-settings: 'FILL' 1;">swap_horiz</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">Transição</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">Fase de adaptação (2026-2032).</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            Mantém regime atual
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            CBS/IBS Informativo
+          </li>
+        </ul>
+      </article>
+
+      <!-- Depois de 2033 (destaque) -->
+      <article class="bg-[#001E40] rounded-xl p-6 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#9AF5CA]/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <h3 class="text-lg font-headline font-bold">2033+</h3>
+          </div>
+          <p class="text-white/70 mb-4">Implementação total do novo sistema.</p>
+          <div class="bg-[#9AF5CA]/10 rounded-lg p-4 border-l-4 border-[#9AF5CA]">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">shield</span>
+              <span class="font-headline font-bold text-[#9AF5CA]">Isento de CBS/IBS</span>
+            </div>
+            <p class="text-sm text-white/60">O MEI permanece fora da incidência da CBS e do IBS.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Content: O que muda -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <div class="max-w-3xl space-y-12">
+      <section>
+        <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">O que a Reforma Tributária muda para o MEI?</h2>
+        <p class="text-base text-[#43474F] leading-relaxed">
+          Na prática, <strong>quase nada muda diretamente</strong> para quem é MEI.
+          A LC 214/2025 criou o IVA Dual (CBS + IBS) mas garantiu expressamente que
+          o MEI está dispensado desses novos tributos enquanto mantiver o faturamento
+          dentro do limite anual de R$81.000.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">O que o MEI precisa fazer em 2026?</h2>
+        <ul class="list-disc pl-5 space-y-2 text-[#43474F]">
+          <li>Continuar pagando o DAS mensalmente (sem alteração na modalidade)</li>
+          <li>Monitorar se o faturamento anual vai ultrapassar R$81.000</li>
+          <li>Verificar se o sistema de emissão de NF-e já aceita campos de IBS/CBS (para NF emitidas para PJ)</li>
+          <li>Ficar atento às mudanças de 2027, quando a CBS entra em vigor para outros regimes</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">Impacto INDIRETO do MEI</h2>
+        <p class="text-[#43474F] mb-4">
+          Mesmo isento, o MEI pode sentir impactos <strong>indiretos</strong>:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-[#43474F]">
+          <li>
+            <strong>Fornecedores:</strong> se seus fornecedores estiverem no Lucro Presumido,
+            a CBS pode ser repassada no preço de compra a partir de 2027.
+          </li>
+          <li>
+            <strong>Clientes PJ:</strong> clientes que compram do MEI geram crédito menor
+            de IBS/CBS, o que pode impactar decisões de compra de grandes empresas.
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="bg-[#F5F3F3] py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-headline font-bold text-[#001E40] mb-8">
+        Perguntas Frequentes — MEI
+      </h2>
+      
+      <div class="space-y-0 divide-y divide-[#C3C6D1]/20">
+        <details class="group py-4 cursor-pointer">
+          <summary class="flex items-start gap-3 list-none marker:hidden">
+            <span class="material-symbols-outlined text-[#43474F] flex-shrink-0 mt-0.5">help</span>
+            <span class="font-headline font-semibold text-[#001E40]">O MEI será afetado pela Reforma Tributária?</span>
+          </summary>
+          <div class="mt-3 pl-9 text-[#43474F] text-sm leading-relaxed">
+            <p>Diretamente, não. A LC 214/2025 garante que o MEI está <strong>isento de CBS e IBS</strong> enquanto o faturamento anual não ultrapassar R$81.000. O DAS mensal e as obrigações acessórias do MEI permanecem inalterados até novas regulamentações.</p>
+          </div>
+        </details>
+
+        <details class="group py-4 cursor-pointer">
+          <summary class="flex items-start gap-3 list-none marker:hidden">
+            <span class="material-symbols-outlined text-[#43474F] flex-shrink-0 mt-0.5">help</span>
+            <span class="font-headline font-semibold text-[#001E40]">O Simples Nacional acaba para o MEI?</span>
+          </summary>
+          <div class="mt-3 pl-9 text-[#43474F] text-sm leading-relaxed">
+            <p>Não. O Simples Nacional — e especialmente o MEI — foi expressamente preservado pela Reforma Tributária. O regime diferenciado e favorecido para microempresas está garantido na Constituição (art. 146) e a LC 214/2025 manteve essa proteção.</p>
+          </div>
+        </details>
+
+        <details class="group py-4 cursor-pointer">
+          <summary class="flex items-start gap-3 list-none marker:hidden">
+            <span class="material-symbols-outlined text-[#43474F] flex-shrink-0 mt-0.5">help</span>
+            <span class="font-headline font-semibold text-[#001E40]">Quando as mudanças entram em vigor para o MEI?</span>
+          </summary>
+          <div class="mt-3 pl-9 text-[#43474F] text-sm leading-relaxed">
+            <p>Em <strong>2026</strong>, CBS e IBS aparecem nas notas fiscais apenas de forma informativa — sem cobrança. Em <strong>2027</strong>, a CBS passa a ser cobrada de empresas do Simples Nacional via DAS, mas o MEI (faturamento até R$81k/ano) permanece isento.</p>
+          </div>
+        </details>
+
+        <details class="group py-4 cursor-pointer">
+          <summary class="flex items-start gap-3 list-none marker:hidden">
+            <span class="material-symbols-outlined text-[#43474F] flex-shrink-0 mt-0.5">help</span>
+            <span class="font-headline font-semibold text-[#001E40]">O limite de faturamento do MEI vai mudar?</span>
+          </summary>
+          <div class="mt-3 pl-9 text-[#43474F] text-sm leading-relaxed">
+            <p>A LC 214/2025 <strong>não alterou o limite de R$81.000/ano</strong> do MEI. Historicamente o limite tem sido reajustado por lei complementar — mas isso depende de votação separada no Congresso.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O MEI será afetado pela Reforma Tributária?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Diretamente, não. A LC 214/2025 garante que o MEI está isento de CBS e IBS enquanto o faturamento anual não ultrapassar R$81.000. O DAS mensal e as obrigações acessórias do MEI permanecem inalterados até novas regulamentações." }
+      },
+      {
+        "@type": "Question",
+        "name": "O Simples Nacional acaba para o MEI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não. O Simples Nacional — e especialmente o MEI — foi expressamente preservado pela Reforma Tributária. O regime diferenciado e favorecido para microempresas está garantido na Constituição (art. 146) e a LC 214/2025 manteve essa proteção." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quando as mudanças entram em vigor para o MEI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Em 2026, CBS e IBS aparecem nas notas fiscais apenas de forma informativa — sem cobrança. Em 2027, a CBS passa a ser cobrada de empresas do Simples Nacional via DAS, mas o MEI (faturamento até R$81k/ano) permanece isento." }
+      },
+      {
+        "@type": "Question",
+        "name": "O limite de faturamento do MEI vai mudar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A LC 214/2025 não alterou o limite de R$81.000/ano do MEI. Historicamente o limite tem sido reajustado por lei complementar — mas isso depende de votação separada no Congresso." }
+      }
+    ]
+  })} />
+
+  <!-- CTA Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+    <div class="bg-[#001E40] rounded-2xl p-8 md:p-12 text-center">
+      <h2 class="text-2xl md:text-3xl font-headline font-bold text-white mb-4">
+        Seu faturamento vai aumentar?
+      </h2>
+      <p class="text-white/70 mb-8 max-w-xl mx-auto">
+        Caso sua empresa cresça e saia do limite do MEI, veja como as novas regras se aplicam ao Simples Nacional e ao Lucro Presumido.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 bg-[#9AF5CA] text-[#005138] font-semibold px-6 py-3 rounded-xl hover:bg-[#7FD8AF] transition-colors"
+      >
+        Simular outros regimes
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+
+  <SeeAlso 
+    variant="list" 
+    items={[
+      { href: "/simples-nacional", title: "Simples Nacional", description: "Como CBS e IBS entram no DAS a partir de 2027" },
+      { href: "/cronograma", title: "Cronograma 2026–2033", description: "Todas as datas da transição tributária" },
+      { href: "/", title: "Simulador Gratuito", description: "Calcule o impacto real no seu negócio" }
+    ]} 
+  />
+</BaseLayout>

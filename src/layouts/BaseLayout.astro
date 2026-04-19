@@ -1,0 +1,192 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  activePage?: string;
+  robots?: string;
+}
+
+const {
+  title = "Simulador da Reforma Tributária 2026 — CBS e IBS",
+  description =
+    "Descubra em 60 segundos se a Reforma Tributária vai aumentar seus impostos. Calculadora gratuita para MEI e Simples Nacional. Sem login, sem NCM.",
+  canonicalUrl = Astro.url.href,
+  activePage = "/",
+  robots = "index, follow",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+function isActive(path: string): boolean {
+  if (path === "/") {
+    return currentPath === "/" || currentPath === "";
+  }
+  return currentPath.startsWith(path);
+}
+
+const siteName = "Simulador Tributário";
+const ogImage = `${Astro.site}og-image.png`;
+---
+
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={robots} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Schema: WebApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Simulador da Reforma Tributária",
+        "url": "https://simuladortributario.com.br",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+        "description": "Simule o impacto da CBS e IBS no seu negócio — grátis, sem login, sem NCM.",
+        "inLanguage": "pt-BR",
+        "author": { "@type": "Organization", "name": "Simulador Tributário" }
+      }
+    </script>
+
+    <!-- Fonts (via CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- PWA / Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    <meta name="theme-color" content="#001E40" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google AdSense (Auto Ads) -->
+    {import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID}`}
+        crossorigin="anonymous"
+      ></script>
+    )}
+  </head>
+
+  <body class="bg-base-100 text-base-content min-h-screen">
+    <!-- Skip to main content (accessibility) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:text-sm focus:font-semibold"
+    >
+      Ir para o conteúdo principal
+    </a>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#C3C6D1]/20 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a href="/" class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-2xl text-[#001E40]" style="font-variation-settings: 'FILL' 1;">balance</span>
+              <span class="font-bold text-lg text-[#001E40] tracking-tight">Simulador Tributário</span>
+            </a>
+          </div>
+          <div class="hidden md:flex items-center gap-1">
+            <a href="/mei" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/mei") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>MEI</a>
+            <a href="/simples-nacional" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/simples-nacional") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Simples Nacional</a>
+            <a href="/cronograma" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/cronograma") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Cronograma</a>
+            <a href="/glossario" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/glossario") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Glossário</a>
+          </div>
+          
+
+          <!-- Menu mobile (hamburguer) -->
+          <div class="dropdown dropdown-end md:hidden">
+            <button
+              tabindex="0"
+              aria-label="Abrir menu de navegação"
+              aria-expanded="false"
+              aria-haspopup="true"
+              class="btn btn-ghost btn-sm px-2 text-[#001E40]"
+              onclick="this.setAttribute('aria-expanded', this.closest('.dropdown').classList.contains('dropdown-open') ? 'false' : 'true')"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <ul tabindex="0" class="dropdown-content menu menu-sm bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 mt-3 w-52 p-2">
+              <li><a href="/mei" class:list={["font-semibold", isActive("/mei") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">MEI</a></li>
+              <li><a href="/simples-nacional" class:list={["font-semibold", isActive("/simples-nacional") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Simples Nacional</a></li>
+              <li><a href="/cronograma" class:list={["font-semibold", isActive("/cronograma") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Cronograma</a></li>
+              <li><a href="/glossario" class:list={["font-semibold", isActive("/glossario") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Glossário</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main id="main-content" class="pt-20">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#F5F3F3] border-t border-[#C3C6D1]/20 py-12 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="text-sm text-[#43474F]">
+            <span class="font-semibold text-[#1B1C1C]">© {new Date().getFullYear()} Simulador Tributário.</span>
+            <span class="ml-1">Baseado na LC 214/2025. Resultados são estimativas — consulte um contador.</span>
+            <span class="hidden md:inline"> · </span>
+            <a
+              href="https://piloto-cbs.tributos.gov.br/servico/calculadora-consumo/calculadora"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs text-[#5E6F83] hover:text-[#001E40] hover:underline"
+            >
+              Calculadora oficial CBS ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

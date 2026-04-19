@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light;
+}
+
+/* ─── Design system tokens (Tailwind v4) ─────────────────────────────── */
+@theme {
+  /* Brand palette */
+  --color-navy:            #001E40;
+  --color-navy-hover:      #003366;
+  --color-emerald:         #006C4B;
+  --color-emerald-hover:   #005A3E;
+  --color-slate-blue:      #5E6F83;
+  --color-soft-grey:       #FBF9F9;
+  --color-surface-alt:     #F5F3F3;
+  --color-surface-raised:  #E3E2E2;
+  --color-border:          #C3C6D1;
+  --color-mint:            #9AF5CA;
+  --color-mint-dark:       #057351;
+  --color-ink:             #1B1C1C;
+  --color-body-text:       #43474F;
+
+  /* Bento layout colors (cronograma hero) */
+  --color-primary:             #001E40;
+  --color-primary-container:  #003366;
+  --color-on-primary:         #FFFFFF;
+  --color-primary-fixed:      #D5E3FF;
+  --color-primary-fixed-dim:  #A7C8FF;
+  --color-on-primary-fixed:  #001B3C;
+  --color-surface-container-low:      #F5F3F3;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-container:        #EFEDED;
+  --color-surface-container-high:   #E9E8E7;
+  --color-surface-container-highest:#E3E2E2;
+  --color-surface:           #FBF9F9;
+  --color-surface-dim:       #DBDAD9;
+  --color-on-surface:        #1B1C1C;
+  --color-on-surface-variant:#43474F;
+  --color-secondary:        #006C4B;
+  --color-secondary-container: #9AF5CA;
+  --color-on-secondary:     #FFFFFF;
+  --color-on-secondary-container:#057351;
+  --color-outline:          #737780;
+  --color-outline-variant:   #C3C6D1;
+  --color-on-background:   #1B1C1C;
+  --color-surface-tint:    #3A5F94;
+
+  /* Typography */
+  --font-sans:     "Inter", system-ui, sans-serif;
+  --font-headline: "Public Sans", system-ui, sans-serif;
+  --font-body:     "Inter", system-ui, sans-serif;
+}
+
+/* ─── DaisyUI theme override — bridge to design tokens ───────────────── */
+:root {
+  /* DaisyUI semantic → brand tokens */
+  --color-base-100:     #FBF9F9;  /* → soft-grey         */
+  --color-base-200:     #F0EDED;  /* slightly darker     */
+  --color-base-300:     #E3E2E2;  /* → surface-raised    */
+  --color-base-content: #1B1C1C;  /* → ink               */
+
+  --color-primary:          #001E40;  /* → navy      */
+  --color-primary-content:  #FFFFFF;
+
+  --color-secondary:          #5E6F83;  /* → slate-blue */
+  --color-secondary-content:  #FFFFFF;
+
+  --color-accent:          #006C4B;  /* → emerald   */
+  --color-accent-content:  #FFFFFF;
+
+  --color-neutral:          #FBF9F9;
+  --color-neutral-content:  #1B1C1C;
+
+  --color-success:          #006C4B;  /* → emerald   */
+  --color-success-content:  #FFFFFF;
+
+  --color-info:          #5E6F83;  /* → slate-blue */
+  --color-info-content:  #FFFFFF;
+
+  /* Shape: no decorative shadows */
+  --depth: 0;
+
+  /* Brand aliases (legacy) */
+  --brand-green:   #006C4B;
+  --brand-blue:    #001E40;
+  --brand-dark:    #001E40;
+  --brand-surface: #FBF9F9;
+}
+
+/* ─── Typography defaults ─────────────────────────────────────────────── */
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Material Symbols filled */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1;
+  font-size: 20px;
+}
+
+/* Headlines: tight tracking per .impeccable.md */
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+/* ─── Simulator step transitions ─────────────────────────────────────── */
+.step-enter-active,
+.step-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.step-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* ─── Timeline ────────────────────────────────────────────────────────── */
+.timeline-bar {
+  transform-origin: left center;
+  transition: transform 0.6s ease-out;
+}
+
+/* ─── News card hover (tonal elevation — no transform/shadow) ───────── */
+.news-card {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.news-card:hover {
+  background-color: var(--color-surface-alt);
+}
+
+/* ─── Scrollbar (Webkit) ──────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--bc) / 0.2);
+  border-radius: 3px;
+}
+
+/* ─── Bento layout utilities (cronograma) ───────────────────────────── */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

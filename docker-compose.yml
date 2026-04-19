@@ -1,0 +1,41 @@
+services:
+  simulador:
+    build: .
+    container_name: simulador-tributario
+    restart: unless-stopped
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4321
+      - NODE_ENV=production
+      # Optional: URL of remotely-hosted tax data JSON
+      # - REFORMA_DATA_URL=https://gist.githubusercontent.com/...
+    labels:
+      # ─── Traefik labels (same pattern as your homelab) ────────────────────
+      - "traefik.enable=true"
+      - "traefik.http.routers.simulador.rule=Host(`simuladortributario.com.br`)"
+      - "traefik.http.routers.simulador.entrypoints=websecure"
+      - "traefik.http.routers.simulador.tls.certresolver=letsencrypt"
+      - "traefik.http.services.simulador.loadbalancer.server.port=4321"
+      # www redirect
+      - "traefik.http.routers.simulador-www.rule=Host(`www.simuladortributario.com.br`)"
+      - "traefik.http.routers.simulador-www.middlewares=redirect-www"
+      - "traefik.http.middlewares.redirect-www.redirectregex.regex=^https://www\\.(.*)"
+      - "traefik.http.middlewares.redirect-www.redirectregex.replacement=https://$${1}"
+      - "traefik.http.middlewares.redirect-www.redirectregex.permanent=true"
+    networks:
+      - traefik-public
+
+  # ─── Optional: cron container to trigger daily rebuild ─────────────────────
+  # Uncomment if you prefer a local cron instead of GitHub Actions
+  # rebuilder:
+  #   image: curlimages/curl:latest
+  #   container_name: simulador-rebuilder
+  #   restart: unless-stopped
+  #   entrypoint: >
+  #     sh -c "while true; do sleep 86400; curl -s -X POST http://simulador:4321/__rebuild; done"
+  #   networks:
+  #     - traefik-public
+
+networks:
+  traefik-public:
+    external: true

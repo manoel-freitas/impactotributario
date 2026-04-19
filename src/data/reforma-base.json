@@ -1,0 +1,44 @@
+{
+  "version": "1.3",
+  "lastUpdated": "2026-04-16",
+  "source": "LC 214/2025, EC 132/2023, Receita Federal, IBPT",
+  "transition": {
+    "years": {
+      "2026": { "cbs": 0.009, "ibs": 0.001, "phase": "test",       "notes": "Ano de teste — CBS 0,9% e IBS 0,1% na NF, sem cobrança efetiva." },
+      "2027": { "cbs": 0.084, "ibs": 0.000, "phase": "transition", "notes": "CBS entra em vigor. PIS e COFINS zerados." },
+      "2028": { "cbs": 0.084, "ibs": 0.000, "phase": "transition", "notes": "CBS mantida. IBS ainda não cobrado." },
+      "2029": { "cbs": 0.084, "ibs": 0.026, "phase": "transition", "notes": "IBS inicia. ICMS e ISS reduzidos 10%." },
+      "2030": { "cbs": 0.084, "ibs": 0.052, "phase": "transition", "notes": "IBS sobe. ICMS e ISS −20% acumulado." },
+      "2031": { "cbs": 0.084, "ibs": 0.078, "phase": "transition", "notes": "IBS sobe. ICMS e ISS −30% acumulado." },
+      "2032": { "cbs": 0.084, "ibs": 0.104, "phase": "transition", "notes": "IBS sobe. ICMS e ISS −40% acumulado." },
+      "2033": { "cbs": 0.084, "ibs": 0.176, "phase": "final",      "notes": "Transição completa. Alíquota final estimada 26–28% (CBS+IBS)." }
+    }
+  },
+  "sectorReductions": {
+    "comercio":                  { "label": "Comércio / Varejo",                           "reductionFactor": 1.0, "notes": "Sem redução. Beneficia-se de créditos na cadeia produtiva." },
+    "servicos":                  { "label": "Serviços em geral",                           "reductionFactor": 1.0, "notes": "Sem redução. Pode ter aumento pois ISS atual é menor que IBS." },
+    "saude":                     { "label": "Saúde (clínicas, consultórios, farmácias)",   "reductionFactor": 0.4, "notes": "Redução de 60% na alíquota padrão — LC 214/2025." },
+    "educacao":                  { "label": "Educação (escolas, cursos, treinamentos)",    "reductionFactor": 0.4, "notes": "Redução de 60% na alíquota padrão — LC 214/2025." },
+    "alimentacao":               { "label": "Alimentação (restaurantes, delivery)",        "reductionFactor": 0.8, "notes": "Redução ~20%. Cesta básica: alíquota zero." },
+    "construcao":                { "label": "Construção Civil",                             "reductionFactor": 1.0, "notes": "Sem redução geral. Créditos de insumos." },
+    "transporte":                { "label": "Transporte / Logística",                      "reductionFactor": 0.6, "notes": "Transporte público: isenção. Carga/frete: redução 40%." },
+    "tecnologia":                { "label": "Tecnologia / Software",                       "reductionFactor": 1.0, "notes": "Sem redução padrão. Possível regime especial P&D." },
+    "profissoes_regulamentadas": { "label": "Advocacia / Contabilidade / Engenharia",       "reductionFactor": 0.7, "notes": "Redução de 30% para profissões regulamentadas." },
+    "agronegocio":               { "label": "Agronegócio",                                 "reductionFactor": 0.8, "notes": "Regime diferenciado. Insumos agropecuários: alíquota zero." },
+    "outro":                     { "label": "Outro setor",                                 "reductionFactor": 1.0, "notes": "Alíquota padrão sem reduções específicas." }
+  },
+  "regimeRules": {
+    "mei":             { "label": "MEI",                  "isExempt": true,  "exemptReason": "MEI com faturamento até R$81.000/ano isento de CBS e IBS (LC 214/2025).",               "currentEffectiveRate": 0.010, "notes": "Paga DAS fixo. CBS e IBS não se aplicam." },
+    "nano":            { "label": "Nanoempreendedor",     "isExempt": true,  "exemptReason": "Nanoempreendedor (até R$40.500/ano) tem isenção total de CBS e IBS (EC 132/2023).",      "currentEffectiveRate": 0.005, "notes": "Nova categoria. Isenção plena." },
+    "simples":         { "label": "Simples Nacional",     "isExempt": false, "currentEffectiveRate": 0.035, "notes": "CBS/IBS embutidos no DAS com alíquota reduzida. 2026 sem cobrança. Impacto real em 2027." },
+    "lucro_presumido": { "label": "Lucro Presumido",      "isExempt": false, "currentEffectiveRate": 0.115, "notes": "Substituição PIS/COFINS→CBS (2027) e ICMS/ISS→IBS (2029–2033)." },
+    "lucro_real":      { "label": "Lucro Real",           "isExempt": false, "currentEffectiveRate": 0.100, "notes": "Créditos amplos do IVA. Pode se beneficiar com muitos insumos." },
+    "autonomo":        { "label": "Autônomo / Sem CNPJ",  "isExempt": false, "currentEffectiveRate": 0.030, "notes": "Impacto depende do enquadramento. Consulte contador." }
+  },
+  "currentRates": {
+    "pis": 0.0065,
+    "cofins": 0.030,
+    "icms_avg": 0.120,
+    "iss_avg": 0.030
+  }
+}
