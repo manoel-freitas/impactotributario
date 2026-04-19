@@ -1,0 +1,184 @@
+---
+import GlossaryPageLayout from "../layouts/GlossaryPageLayout.astro";
+
+const title = "Nanoempreendedor — Reforma Tributária | Guia Completo";
+const description = "Entenda o nanoempreendedor: nova categoria com faturamento até R$40.500/ano, isento de CBS e IBS. Diferença para MEI.";
+const articleUrl = "https://simuladortributario.com.br/nanoempreendedor";
+
+const faqs = [
+  {
+    q: "O que é nanoempreendedor?",
+    a: "Categoria criada pela EC 132/2023 para pessoa física com faturamento anual até R$40.500. Tem isenção total de CBS e IBS. Diferente do MEI, não necessariamente tem CNPJ — pode operar como PF."
+  },
+  {
+    q: "Qual a diferença para o MEI?",
+    a: "O MEI exige CNPJ e tem limite maior (R$81.000/ano). O nanoempreendedor é mais simples: pode operar sem CNPJ, só com CPF, e tem limite menor. Ideal para atividades bem pequenas ou início de atividade."
+  },
+  {
+    q: "Precisa de CNPJ?",
+    a: "Não obrigatoriamente. A pessoa física pode atuar como nanoempreendedor usando apenas o CPF. Porém, pode optar por abrir CNPJMEI se preferir ou se o cliente exigir nota fiscal."
+  },
+  {
+    q: "O limite é de quanto?",
+    a: "R$40.500 por ano (equivalente a R$3.375/mês). Acima disso, precisa migrar para MEI (até R$81k) ou outro regime. O limite pode ser revisado futuramente."
+  }
+];
+
+const seeAlso = [
+  { href: "/glossario", title: "Glossário", description: "Todos os termos da reforma" },
+  { href: "/mei", title: "MEI", description: "Até R$81.000/ano" },
+  { href: "/simples-nacional", title: "Simples Nacional", description: "Até R$4,8M/ano" },
+  { href: "/", title: "Simulador Gratuito", description: "Calcule o impacto no seu negócio" }
+];
+---
+
+<GlossaryPageLayout
+  title={title}
+  description={description}
+  articleUrl={articleUrl}
+  badge="Nanoempreendedor"
+  badgeClass="bg-[#9AF5CA] text-[#005138]"
+  heroTitle="Nanoempreendedor na Reforma"
+  heroSubtitle="Nova categoria com faturamento até R$40.500/ano, isenta de CBS e IBS."
+  statValue="R$0"
+  statLabel="CBS + IBS por ano"
+  statDetails={["Isenção total", "Até R$40.500/ano", "Sem CNPJ obrigatório"]}
+  faqTitle="Perguntas Frequentes — Nanoempreendedor"
+  faqs={faqs}
+  ctaTitle="Pronto para calcular o impacto?"
+  ctaText="Simule quanto a reforma tributária vai afetar o seu negócio com base no seu regime e faturamento."
+  ctaLink="/"
+  ctaLinkText="Simular impacto no meu negócio"
+  seeAlso={seeAlso}
+>
+  <!-- Timeline Slot -->
+  <div slot="timeline" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl md:text-3xl font-headline font-bold text-[#001E40] mb-12">
+      Linha do Tempo: Nanoempreendedor
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-8 md:gap-6">
+      <!-- Hoje -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#001E40]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">Hoje</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">Sem categoria</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            Nano sem definição
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            MEI é único opção
+          </li>
+        </ul>
+      </article>
+
+      <!-- Transição -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-variation-settings: 'FILL' 1;">swap_horiz</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">Transição</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">2026-2032</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            CBS/IBS informativo
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            Isenção mantida
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2033+ -->
+      <article class="bg-[#001E40] rounded-xl p-6 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#9AF5CA]/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <h3 class="text-lg font-headline font-bold">2033+</h3>
+          </div>
+          <p class="text-white/70 mb-4">Isenção confirmada</p>
+          <div class="bg-[#9AF5CA]/10 rounded-lg p-4 border-l-4 border-[#9AF5CA]">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">shield</span>
+              <span class="font-headline font-bold text-[#9AF5CA]">Isento de CBS/IBS</span>
+            </div>
+            <p class="text-sm text-white/60">Nanoempreendedor permanece fora da incidência.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Content Slot -->
+  <div slot="content">
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">O que é o nanoempreendedor?</h2>
+      <p class="text-base text-[#43474F] leading-relaxed">
+        O nanoempreendedor é uma <strong>nova categoria</strong> criada pela Emenda Constitucional 132/2023 (que originou a Reforma Tributária). Refere-se a pessoa física com faturamento anual muito baixo — até R$40.500 por ano.
+      </p>
+      <p class="text-base text-[#43474F] leading-relaxed mt-4">
+        Diferente do MEI, o nanoempreendedor <strong>não precisa ter CNPJ</strong> necessariamente. Pode operar como pessoa física (PF) usando apenas o CPF para identificar-se em vendas, desde que o cliente aceite.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">Nanoempreendedor vs MEI</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-[#43474F] border-collapse">
+          <thead>
+            <tr class="border-b border-[#C3C6D1]/20">
+              <th class="text-left py-2 font-semibold text-[#001E40]">Aspecto</th>
+              <th class="text-left py-2 font-semibold text-[#001E40]">Nanoempreendedor</th>
+              <th class="text-left py-2 font-semibold text-[#001E40]">MEI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#C3C6D1]/20">
+              <td class="py-2">Limite anual</td>
+              <td class="py-2">R$40.500</td>
+              <td class="py-2">R$81.000</td>
+            </tr>
+            <tr class="border-b border-[#C3C6D1]/20">
+              <td class="py-2">CNPJ</td>
+              <td class="py-2">Opcional</td>
+              <td class="py-2">Obrigatório</td>
+            </tr>
+            <tr class="border-b border-[#C3C6D1]/20">
+              <td class="py-2">CBS/IBS</td>
+              <td class="py-2">Isento</td>
+              <td class="py-2">Isento</td>
+            </tr>
+            <tr>
+              <td class="py-2">DAS</td>
+              <td class="py-2">Não</td>
+              <td class="py-2">Sim (R$70/mês)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">Quem pode ser nanoempreendedor?</h2>
+      <p class="text-[#43474F] mb-4">
+        Qualquer pessoa física que:
+      </p>
+      <ul class="list-disc pl-5 space-y-2 text-[#43474F]">
+        <li>Tenha faturamento anual até R$40.500</li>
+        <li>Exerça atividade produtiva (serviços, comércio, artesanato)</li>
+        <li>Não tenha interesse ou necessidade de CNPJ</li>
+      </ul>
+      <p class="text-[#43474F] mt-4 text-sm">
+        A regulamentação detalhada será definida por futura lei complementar.
+      </p>
+    </section>
+  </div>
+</GlossaryPageLayout>

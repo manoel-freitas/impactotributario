@@ -151,8 +151,26 @@ const ogImage = `${Astro.site}og-image.png`;
             </a>
           </div>
           <div class="hidden md:flex items-center gap-1">
-            <a href="/mei" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/mei") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>MEI</a>
-            <a href="/simples-nacional" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/simples-nacional") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Simples Nacional</a>
+            <!-- Guiai Dropdown -->
+            <div class="dropdown dropdown-hover">
+              <button tabindex="0" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors flex items-center gap-1", currentPath.startsWith("/mei") || currentPath.startsWith("/simples") || currentPath.startsWith("/iva") || currentPath.startsWith("/split") || currentPath.startsWith("/lucro") || currentPath.startsWith("/nano") || currentPath.startsWith("/transicao") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>
+                Guias
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <ul tabindex="0" class="dropdown-content menu menu-sm bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 mt-2 w-56 p-2">
+                <li><a href="/mei" class:list={["font-semibold", isActive("/mei") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>MEI</a></li>
+                <li><a href="/simples-nacional" class:list={["font-semibold", isActive("/simples-nacional") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Simples Nacional</a></li>
+                <li class="border-t border-[#C3C6D1]/20 my-1"></li>
+                <li><a href="/iva-dual" class:list={["font-semibold", isActive("/iva-dual") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>IVA Dual</a></li>
+                <li><a href="/split-payment" class:list={["font-semibold", isActive("/split-payment") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Split Payment</a></li>
+                <li><a href="/lucro-presumido" class:list={["font-semibold", isActive("/lucro-presumido") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Lucro Presumido</a></li>
+                <li><a href="/lucro-real" class:list={["font-semibold", isActive("/lucro-real") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Lucro Real</a></li>
+                <li><a href="/nanoempreendedor" class:list={["font-semibold", isActive("/nanoempreendedor") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Nanoempreendedor</a></li>
+                <li><a href="/transicao" class:list={["font-semibold", isActive("/transicao") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]}>Transição</a></li>
+              </ul>
+            </div>
             <a href="/cronograma" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/cronograma") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Cronograma</a>
             <a href="/glossario" class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors", isActive("/glossario") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}>Glossário</a>
           </div>
@@ -172,9 +190,18 @@ const ogImage = `${Astro.site}og-image.png`;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <ul tabindex="0" class="dropdown-content menu menu-sm bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 mt-3 w-52 p-2">
+            <ul tabindex="0" class="dropdown-content menu menu-sm bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 mt-3 w-56 p-2">
+              <li class="menu-title"><span class="text-xs text-[#5E6F83] font-semibold">Guias</span></li>
               <li><a href="/mei" class:list={["font-semibold", isActive("/mei") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">MEI</a></li>
               <li><a href="/simples-nacional" class:list={["font-semibold", isActive("/simples-nacional") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Simples Nacional</a></li>
+              <li class="border-t border-[#C3C6D1]/20 my-1"></li>
+              <li><a href="/iva-dual" class:list={["font-semibold", isActive("/iva-dual") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">IVA Dual</a></li>
+              <li><a href="/split-payment" class:list={["font-semibold", isActive("/split-payment") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Split Payment</a></li>
+              <li><a href="/lucro-presumido" class:list={["font-semibold", isActive("/lucro-presumido") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Lucro Presumido</a></li>
+              <li><a href="/lucro-real" class:list={["font-semibold", isActive("/lucro-real") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Lucro Real</a></li>
+              <li><a href="/nanoempreendedor" class:list={["font-semibold", isActive("/nanoempreendedor") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Nanoempreendedor</a></li>
+              <li><a href="/transicao" class:list={["font-semibold", isActive("/transicao") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Transição</a></li>
+              <li class="border-t border-[#C3C6D1]/20 my-1"></li>
               <li><a href="/cronograma" class:list={["font-semibold", isActive("/cronograma") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Cronograma</a></li>
               <li><a href="/glossario" class:list={["font-semibold", isActive("/glossario") ? "text-[#001E40]" : "text-[#43474F] hover:text-[#001E40]"]} onclick="document.activeElement.blur()">Glossário</a></li>
             </ul>

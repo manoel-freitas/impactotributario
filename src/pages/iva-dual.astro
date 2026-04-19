@@ -1,0 +1,173 @@
+---
+import GlossaryPageLayout from "../layouts/GlossaryPageLayout.astro";
+
+const title = "IVA Dual — Reforma Tributária Brasileira | Guia Completo";
+const description = "Entenda o IVA Dual: o sistema de tributação sobre consumo com CBS e IBS que replace PIS, COFINS, ICMS e ISS. Guia completo do novo modelo tributário.";
+const articleUrl = "https://simuladortributario.com.br/iva-dual";
+
+const faqs = [
+  {
+    q: "O que é o IVA Dual?",
+    a: "O IVA Dual (Imposto sobre Valor Agregado) é o modelo de tributação sobre consumo adotado pela Reforma Tributária brasileira. Compose dois impostos: CBS (federal) e IBS (estadual/municipal). É usado em mais de 170 países e elimina a tributação em cascata ao permitir créditos em toda a cadeia produtiva."
+  },
+  {
+    q: "Quantos impostos o IVA Dual substitui?",
+    a: "O IVA Dual substitui 5 impostos principais: PIS, COFINS (ambos replaced by CBS), ICMS (substituted by IBS estadual) e ISS (substituted by IBS municipal). Além disso, há Contribuição de Intervenção no Domínio Econômico (CIDE) e tambahan obrigações."
+  },
+  {
+    q: "Quem está isento do IVA Dual?",
+    a: "Nanoempreendedores (faturamento até R$40.500/ano), MEI (até R$81.000/ano) e organizações sem fins lucrativos (entidades benef prejuíins religiosamente isentas) têm isenção. Alguns setores podem ter alíquotas zeradas ou diferenciadas."
+  },
+  {
+    q: "Quando o IVA Dual entra em vigor?",
+    a: "Em 2026 é informativo (aparece nas notas fiscais sem cobrança). Em 2027 a CBS entra em vigor plena. O IBS inicia em 2029 com alíquota reduzida e aumenta 10%/ano até alcançar a alíquota plena em 2033."
+  }
+];
+
+const seeAlso = [
+  { href: "/glossario", title: "Glossário", description: "Todos os termos da reforma" },
+  { href: "/cronograma", title: "Cronograma 2026–2033", description: "Datas da transição tributária" },
+  { href: "/simples-nacional", title: "Simples Nacional", description: "CBS e IBS no DAS a partir de 2027" },
+  { href: "/", title: "Simulador Gratuito", description: "Calcule o impacto no seu negócio" }
+];
+---
+
+<GlossaryPageLayout
+  title={title}
+  description={description}
+  articleUrl={articleUrl}
+  badge="IVA Dual"
+  badgeClass="bg-[#001E40] text-white"
+  heroTitle="IVA Dual na Reforma Tributária"
+  heroSubtitle="O novo sistema de tributação sobre consumo que substitui PIS, COFINS, ICMS e ISS."
+  statValue="CBS + IBS"
+  statLabel="Dois impostos, uma base"
+  statDetails={["Alíquotas combinadas ~8,4% + ~14%", "Não cumulativo", "170+ países usam IVA"]}
+  faqTitle="Perguntas Frequentes — IVA Dual"
+  faqs={faqs}
+  ctaTitle="Pronto para calcular o impacto?"
+  ctaText="Simule quanto a reforma tributária vai afetar o seu negócio com base no seu regime e setor."
+  ctaLink="/"
+  ctaLinkText="Simular impacto no meu negócio"
+  seeAlso={seeAlso}
+>
+  <!-- Timeline Slot -->
+  <div slot="timeline" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl md:text-3xl font-headline font-bold text-[#001E40] mb-12">
+      Linha do Tempo: IVA Dual
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_2fr] gap-8 md:gap-6">
+      <!-- 2026 -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#001E40]" style="font-variation-settings: 'FILL' 1;">info</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">2026</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">Informativo</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            CBS/IBS em notas fiscais
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            Sem cobrança
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2027 -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">2027</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">CBS entra em vigor</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            CBS cobrada
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            IBS ainda não
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2029 -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">2029</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">IBS inicia</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+           IBS gradual (10%)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+           CBS plena
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2033+ -->
+      <article class="bg-[#001E40] rounded-xl p-6 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#9AF5CA]/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <h3 class="text-lg font-headline font-bold">2033+</h3>
+          </div>
+          <p class="text-white/70 mb-4"> Sistema pleno</p>
+          <div class="bg-[#9AF5CA]/10 rounded-lg p-4 border-l-4 border-[#9AF5CA]">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="font-headline font-bold text-[#9AF5CA]">IVA Dual completo</span>
+            </div>
+            <p class="text-sm text-white/60">CBS e IBS em alíquotas plenas. Impostos antigos extintos.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Content Slot -->
+  <div slot="content">
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">O que é o IVA Dual?</h2>
+      <p class="text-base text-[#43474F] leading-relaxed">
+        O IVA Dual (Imposto sobre Valor Agregado) é o modelo de tributação sobre o consumo adotado pela Reforma Tributária brasileira. É composto por dois impostos que incidem sobre o valor agregado em cada etapa da cadeia produtiva: a CBS (federal) e o IBS (estadual e municipal).
+      </p>
+      <p class="text-base text-[#43474F] leading-relaxed mt-4">
+        Este modelo é usado em mais de 170 países ao redor do mundo e substitui o sistema brasileiro atual, que suffers de tributação em cascata — quando o imposto é cobrado sobre imposto em cada etapa da produção.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">Quais impostos são substituídos?</h2>
+      <ul class="list-disc pl-5 space-y-2 text-[#43474F]">
+        <li><strong>CBS (federal)</strong>: substitui PIS e COFINS</li>
+        <li><strong>IBS (estadual)</strong>: substitui ICMS</li>
+        <li><strong>IBS (municipal)</strong>: substitui ISS</li>
+      </ul>
+      <p class="text-[#43474F] mt-4 text-sm">
+        Além desses, há debates sobre a integração de outras contribuições como a CIDE-Combustíveis.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">Não cumulatividade: a grande mudança</h2>
+      <p class="text-[#43474F] mb-4">
+        O princípio da não cumulatividade permite que o imposto pago em etapas anteriores da cadeia produtiva seja abatido do imposto devido na etapa seguinte. Isso elimina o "imposto sobre imposto" que existia no sistema atual.
+      </p>
+      <p class="text-[#43474F]">
+        <strong>Resultado:</strong> empresas podem se beneficiar de créditos tributários, e o consumidor final paga menos imposto embutido no preço dos produtos e serviços.
+      </p>
+    </section>
+  </div>
+</GlossaryPageLayout>

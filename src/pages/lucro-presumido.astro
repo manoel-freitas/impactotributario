@@ -1,0 +1,175 @@
+---
+import GlossaryPageLayout from "../layouts/GlossaryPageLayout.astro";
+
+const title = "Lucro Presumido — Reforma Tributária 2026 | Guia Completo";
+const description = "Entenda como o Lucro Presumido é afetado pela Reforma Tributária: CBS sustitui PIS/COFINS em 2027, IBS substitui ICMS/ISS em 2029-2033.";
+const articleUrl = "https://simuladortributario.com.br/lucro-presumido";
+
+const faqs = [
+  {
+    q: "O Lucro Presumido será afetado?",
+    a: "Sim. Em 2027 a CBS sustitui PIS e COFINS (alíquota ~8,4%). Entre 2029-2033, o IBS sustitui gradualmente o ICMS (estadual) e ISS (municipal). A transição acontece ao longo de 7 anos."
+  },
+  {
+    q: "Quando a CBS entra em vigor para Lucro Presumido?",
+    a: "Em 2026 é informativo (aparece na nota fiscal sem cobrança). Em 2027 a CBS passa a ser cobrada com alíquota de ~8,4% sobre a receita bruta."
+  },
+  {
+    q: "Posso tomar crédito do IVA?",
+    a: "Sim. O Lucro Presumido se beneficia do sistema não cumulativo do IVA Dual. Você pode abater o CBS pago nas compras做个 do imposto devido. Porém, a presunção delucro limita alguns benefícios."
+  },
+  {
+    q: "O limite de R$78M/ano continúa?",
+    a: "A LC 214/2025 não alterou esse limite. O faturamentomáximo para Lucro Presumido permanece R$78 milhões/ano. Acima disso, oLucro Real é obrigatório."
+  }
+];
+
+const seeAlso = [
+  { href: "/glossario", title: "Glossário", description: "Todos os termos da reforma" },
+  { href: "/lucro-real", title: "Lucro Real", description: "Créditos IVA integrais" },
+  { href: "/iva-dual", title: "IVA Dual", description: "Sistema CBS + IBS" },
+  { href: "/", title: "Simulador Gratuito", description: "Calcule o impacto no seu negócio" }
+];
+---
+
+<GlossaryPageLayout
+  title={title}
+  description={description}
+  articleUrl={articleUrl}
+  badge="Lucro Presumido"
+  badgeClass="bg-[#5E6F83] text-white"
+  heroTitle="Lucro Presumido na Reforma"
+  heroSubtitle="CBS sustitui PIS/COFINS em 2027; IBS sustitui ICMS/ISS em 2029-2033."
+  statValue="~8,4% + ~14%"
+  statLabel="CBS + IBS"
+  statDetails={["Alíquota estimada", "Não cumulativo", "Créditos permitidos"]}
+  faqTitle="Perguntas Frequentes — Lucro Presumido"
+  faqs={faqs}
+  ctaTitle="Pronto para calcular o impacto?"
+  ctaText="Simule quanto a reforma tributária vai afetar o seu negócio com base no seu regime e faturamento."
+  ctaLink="/"
+  ctaLinkText="Simular impacto no meu negócio"
+  seeAlso={seeAlso}
+>
+  <!-- Timeline Slot -->
+  <div slot="timeline" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl md:text-3xl font-headline font-bold text-[#001E40] mb-12">
+      Linha do Tempo: Lucro Presumido
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_2fr] gap-8 md:gap-6">
+      <!-- Hoje -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#001E40]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">Hoje</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">Sistema atual</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            PIS + COFINS
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            ICMS + ISS
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2027 -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">2027</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">CBS entra</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            CBS (~8,4%)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            PIS/COFINS extinto
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2029 -->
+      <article class="bg-[#FBF9F9] rounded-xl p-6 border border-[#C3C6D1]/20">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-[#002F74]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+          <h3 class="text-lg font-headline font-bold text-[#001E40]">2029</h3>
+        </div>
+        <p class="text-[#43474F] mb-4">IBS inicia</p>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#006C4B] text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            IBS (10%)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5E6F83] text-lg" style="font-variation-settings: 'FILL' 1;">remove</span>
+            ICMS/ISS reduz
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2033+ -->
+      <article class="bg-[#001E40] rounded-xl p-6 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#9AF5CA]/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <h3 class="text-lg font-headline font-bold">2033+</h3>
+          </div>
+          <p class="text-white/70 mb-4">Sistema completo</p>
+          <div class="bg-[#9AF5CA]/10 rounded-lg p-4 border-l-4 border-[#9AF5CA]">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="material-symbols-outlined text-[#9AF5CA]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              <span class="font-headline font-bold text-[#9AF5CA]">CBS + IBS plenos</span>
+            </div>
+            <p class="text-sm text-white/60">Impostos antigos extintos. Alíquotas plenas.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Content Slot -->
+  <div slot="content">
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">O que muda para o Lucro Presumido?</h2>
+      <p class="text-base text-[#43474F] leading-relaxed">
+        A Reforma Tributária substituí os cinco impostos principais por CBS (federal) e IBS (estadual/municipal). Para empresas no Lucro Presumido, isso significa:
+      </p>
+      <ul class="list-disc pl-5 space-y-2 text-[#43474F] mt-4">
+        <li><strong>2027:</strong> CBS sustitui PIS e COFINS (~8,4% sobre receita)</li>
+        <li><strong>2029-2033:</strong> IBS sustitui gradualmente ICMS e ISS</li>
+        <li><strong>Não cumulatividade:</strong> possibilidade de créditos sobre insumos</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">Qual o impacto financeiro?</h2>
+      <p class="text-[#43474F] mb-4">
+        A alíquota combinada estimada é CBS (~8,4%) + IBS (~14%) = ~22,4% sobre o valor da operação. Porém, há benefícios:
+      </p>
+      <ul class="list-disc pl-5 space-y-2 text-[#43474F]">
+        <li>Não cumulatividade permite créditos de CBS/IBS pagos em insumos</li>
+        <li>Eliminação da cumulatividade do sistema atual (imposto sobre imposto)</li>
+        <li>Possível redução líquida dependendo do setor e insumos</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-headline font-bold text-[#001E40] mb-4">O que o empresa precisa fazer?</h2>
+      <ul class="list-disc pl-5 space-y-2 text-[#43474F]">
+        <li>Monitorarlimites de faturamento (R$78M/ano para保持在no Lucro Presumido)</li>
+        <li>Adaptar sistemas paraemitir notas fiscais com CBS e IBS</li>
+        <li>Planejar liquidez paraCBS em 2027 e IBS em 2029</li>
+        <li>Considerar benefícios decréditos do IVA Dual</li>
+      </ul>
+    </section>
+  </div>
+</GlossaryPageLayout>

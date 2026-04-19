@@ -1,0 +1,176 @@
+---
+export const prerender = true;
+import BaseLayout from "./BaseLayout.astro";
+import SeeAlso from "../components/SeeAlso.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  articleUrl: string;
+  badge: string;
+  badgeClass?: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  statValue: string;
+  statLabel: string;
+  statDetails?: string[];
+  faqTitle?: string;
+  faqs: Array<{ q: string; a: string }>;
+  ctaTitle: string;
+  ctaText: string;
+  ctaLink?: string;
+  ctaLinkText?: string;
+  seeAlso: Array<{ href: string; title: string; description: string }>;
+}
+
+const {
+  title,
+  description,
+  articleUrl,
+  badge,
+  badgeClass = "bg-[#9AF5CA] text-[#005138]",
+  heroTitle,
+  heroSubtitle,
+  statValue,
+  statLabel,
+  statDetails = [],
+  faqTitle,
+  faqs = [],
+  ctaTitle,
+  ctaText,
+  ctaLink = "/",
+  ctaLinkText = "Acessar simulador",
+  seeAlso,
+} = Astro.props;
+
+const siteUrl = "https://simuladortributario.com.br";
+const ogImage = `${siteUrl}/og-image.png`;
+const currentDate = new Date().toISOString().split("T")[0];
+---
+
+<BaseLayout title={title} description={description} canonicalUrl={articleUrl}>
+  <!-- Article Schema -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description: description,
+      url: articleUrl,
+      image: ogImage,
+      datePublished: "2025-01-01",
+      dateModified: currentDate,
+      publisher: {
+        "@type": "Organization",
+        name: "Simulador Reforma Tributária"
+      }
+    })}
+  />
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="space-y-6">
+        <span class:list={["inline-flex items-center px-3 py-1 text-sm font-semibold rounded-full", badgeClass]}>
+          {badge}
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-headline font-extrabold text-[#001E40] tracking-tighter leading-[1.1]">
+          {heroTitle}
+        </h1>
+        <p class="text-lg md:text-xl text-[#43474F] leading-relaxed max-w-lg">
+          <slot name="hero-subtitle">{heroSubtitle}</slot>
+        </p>
+      </div>
+
+      <!-- Stat Card -->
+      <div class="relative">
+        <div class="bg-[#001E40] rounded-2xl p-8 text-white">
+          <div class="text-sm text-[#9AF5CA] font-semibold uppercase tracking-wide mb-2">
+            {statLabel}
+          </div>
+          <div class="text-5xl font-headline font-bold mb-1">{statValue}</div>
+          {statDetails.length > 0 && (
+            <div class="mt-6 pt-6 border-t border-white/20">
+              {statDetails.map((detail) => (
+                <div class="text-sm text-white/50">{detail}</div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <slot name="timeline" />
+
+  <!-- Content Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <div class="max-w-3xl space-y-12">
+      <slot name="content" />
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  {faqs.length > 0 && (
+    <section class="bg-[#F5F3F3] py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <h2 class="text-2xl font-headline font-bold text-[#001E40] mb-8">
+          {faqTitle || "Perguntas Frequentes"}
+        </h2>
+
+        <div class="space-y-0 divide-y divide-[#C3C6D1]/20">
+          {faqs.map((faq) => (
+            <details class="group py-4 cursor-pointer">
+              <summary class="flex items-start gap-3 list-none marker:hidden">
+                <span class="material-symbols-outlined text-[#43474F] flex-shrink-0 mt-0.5">help</span>
+                <span class="font-headline font-semibold text-[#001E40]">{faq.q}</span>
+              </summary>
+              <div class="mt-3 pl-9 text-[#43474F] text-sm leading-relaxed">
+                <p>{faq.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ Schema -->
+  {faqs.length > 0 && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a }
+        }))
+      })}
+    />
+  )}
+
+  <!-- CTA Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+    <div class="bg-[#001E40] rounded-2xl p-8 md:p-12 text-center">
+      <h2 class="text-2xl md:text-3xl font-headline font-bold text-white mb-4">
+        {ctaTitle}
+      </h2>
+      <p class="text-white/70 mb-8 max-w-xl mx-auto">{ctaText}</p>
+      <a
+        href={ctaLink}
+        class="inline-flex items-center gap-2 bg-[#9AF5CA] text-[#005138] font-semibold px-6 py-3 rounded-xl hover:bg-[#7FD8AF] transition-colors"
+      >
+        {ctaLinkText}
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;"
+          >arrow_forward</span
+      >
+      </a>
+    </div>
+  </section>
+
+  <SeeAlso variant="list" items={seeAlso} />
+</BaseLayout>
