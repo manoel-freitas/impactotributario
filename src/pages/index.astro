@@ -5,10 +5,9 @@ import Simulator from "../components/Simulator.vue";
 import NewsSection from "../components/NewsSection.astro";
 import type { ReformaData, NewsData } from "../lib/types.ts";
 import { fetchRSSItems } from "../lib/rss-fetch.ts";
+import taxDataRaw from "../generated/tax-data.json";
 
-const taxData = await fetch("../generated/tax-data.json").then(r => r.json()).catch(() => 
-  fetch("../data/reforma-base.json").then(r => r.json())
-).then(d => d as ReformaData);
+const taxData = taxDataRaw as ReformaData;
 
 const newsData: NewsData = {
   fetchedAt: new Date().toISOString(),

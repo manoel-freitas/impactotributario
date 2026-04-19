@@ -11,45 +11,8 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-function getEnvVar(key: string): string | undefined {
-  const g = globalThis as Record<string, unknown>;
-  const env = import.meta.env as Record<string, unknown>;
-  return (g[key] as string) ?? (env[key] as string);
-}
-const REFORMA_DATA_URL = getEnvVar("REFORMA_DATA_URL") ?? "";
-
-async function fetchRemoteTaxData(url: string, timeout = 5000): Promise<ReformaData | null> {
-  try {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
-    const res = await fetch(url, { signal: controller.signal });
-    clearTimeout(id);
-    if (!res.ok) return null;
-    return (await res.json()) as ReformaData;
-  } catch {
-    return null;
-  }
-}
-
-async function loadTaxData(): Promise<ReformaData | null> {
-  if (REFORMA_DATA_URL) {
-    console.error("[calculate-real] Attempting remote:", REFORMA_DATA_URL);
-    const remote = await fetchRemoteTaxData(REFORMA_DATA_URL);
-    if (remote) {
-      console.error("[calculate-real] Remote loaded OK, version:", remote.version);
-      return remote;
-    }
-    console.error("[calculate-real] Remote failed, falling back to bundled");
-  }
-  
-  const fallback = reformaBaseJson as ReformaData | undefined;
-  if (!fallback || !fallback.version) {
-    console.error("[calculate-real] FATAL: reformaBase is undefined or invalid!", typeof reformaBaseJson);
-    return null;
-  }
-  
-  console.error("[calculate-real] Using bundled data version:", fallback.version);
-  return fallback;
+function loadTaxData(): ReformaData {
+  return reformaBaseJson as ReformaData;
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -63,13 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const data = await loadTaxData();
-    if (!data) {
-      return new Response(
-        JSON.stringify({ ok: false, error: "Dados tributários indisponíveis" }),
-        { status: 503, headers: { "Content-Type": "application/json" } }
-      );
-    }
+    const data = loadTaxData();
 
     const result = calculate(input, data);
     return new Response(

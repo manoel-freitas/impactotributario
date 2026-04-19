@@ -18,49 +18,8 @@ import type { SimulatorInput, ReformaData } from "../../lib/types.ts";
 import { calculate } from "../../lib/taxCalculator.ts";
 import reformaBase from "../../data/reforma-base.json";
 
-// ─── Load tax data for Workers runtime ─────────────────────────────
-// Priority: 1) remote URL (REFORMA_DATA_URL env var), 2) bundled fallback
-function getEnvVar(key: string): string | undefined {
-  const g = globalThis as Record<string, unknown>;
-  const env = import.meta.env as Record<string, unknown>;
-  return (g[key] as string) ?? (env[key] as string);
-}
-const REFORMA_DATA_URL = getEnvVar("REFORMA_DATA_URL") ?? "";
-
-async function fetchRemoteTaxData(url: string, timeout = 5000): Promise<ReformaData | null> {
-  try {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
-    const res = await fetch(url, { signal: controller.signal });
-    clearTimeout(id);
-    if (!res.ok) return null;
-    return (await res.json()) as ReformaData;
-  } catch {
-    return null;
-  }
-}
-
-async function loadTaxData(): Promise<ReformaData> {
-  // Try remote URL first (Cloudflare Secret / env var)
-  if (REFORMA_DATA_URL) {
-    const remote = await fetchRemoteTaxData(REFORMA_DATA_URL);
-    if (remote) return remote;
-  }
-  // Fallback to bundled JSON
+function loadTaxData(): ReformaData {
   return reformaBase as ReformaData;
-}
-
-// Cached tax data (refreshed hourly)
-let _taxDataCache: { data: ReformaData; expiry: number } | null = null;
-async function getTaxData(): Promise<ReformaData> {
-  const now = Date.now();
-  // Return cached if still valid (1 hour TTL)
-  if (_taxDataCache && now < _taxDataCache.expiry) {
-    return _taxDataCache.data;
-  }
-  const data = await loadTaxData();
-  _taxDataCache = { data, expiry: now + 60 * 60 * 1000 };
-  return data;
 }
 
 // ─── Validators ────────────────────────────────────────────────────────────────
@@ -175,17 +134,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     );
   }
 
-  // Load tax data (separate from calculation to give distinct error codes)
-  let taxData: ReformaData;
-  try {
-    taxData = await getTaxData();
-  } catch (err) {
-    console.error("[/api/simulate] Tax data unavailable:", err);
-    return new Response(
-      JSON.stringify({ error: "Dados tributários indisponíveis. Tente novamente em instantes." }),
-      { status: 503, headers: { ...CORS_HEADERS, "Content-Type": "application/json" } }
-    );
-  }
+  // Load tax data
+  const taxData = loadTaxData();
 
   // Calculate
   try {
