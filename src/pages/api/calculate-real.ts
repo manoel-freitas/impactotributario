@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import type { SimulatorInput, SimulatorResult, ReformaData } from "../../lib/types.ts";
 import { calculate } from "../../lib/taxCalculator.ts";
-import reformaBase from "../../data/reforma-base.json";
+import reformaBaseJson from "../../data/reforma-base.json";
 
 export const prerender = false;
 
@@ -33,10 +33,23 @@ async function fetchRemoteTaxData(url: string, timeout = 5000): Promise<ReformaD
 
 async function loadTaxData(): Promise<ReformaData | null> {
   if (REFORMA_DATA_URL) {
+    console.error("[calculate-real] Attempting remote:", REFORMA_DATA_URL);
     const remote = await fetchRemoteTaxData(REFORMA_DATA_URL);
-    if (remote) return remote;
+    if (remote) {
+      console.error("[calculate-real] Remote loaded OK, version:", remote.version);
+      return remote;
+    }
+    console.error("[calculate-real] Remote failed, falling back to bundled");
   }
-  return reformaBase as ReformaData;
+  
+  const fallback = reformaBaseJson as ReformaData | undefined;
+  if (!fallback || !fallback.version) {
+    console.error("[calculate-real] FATAL: reformaBase is undefined or invalid!", typeof reformaBaseJson);
+    return null;
+  }
+  
+  console.error("[calculate-real] Using bundled data version:", fallback.version);
+  return fallback;
 }
 
 export const POST: APIRoute = async ({ request }) => {
