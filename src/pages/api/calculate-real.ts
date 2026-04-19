@@ -1,8 +1,7 @@
 import type { APIRoute } from "astro";
 import type { SimulatorInput, SimulatorResult, ReformaData } from "../../lib/types.ts";
 import { calculate } from "../../lib/taxCalculator.ts";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import reformaBase from "../../data/reforma-base.json";
 
 export const prerender = false;
 
@@ -12,20 +11,32 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-function loadTaxData(): ReformaData | null {
-  const candidates = [
-    join(process.cwd(), "src", "generated", "tax-data.json"),
-    join(process.cwd(), "src", "data", "reforma-base.json"),
-  ];
+function getEnvVar(key: string): string | undefined {
+  const g = globalThis as Record<string, unknown>;
+  const env = import.meta.env as Record<string, unknown>;
+  return (g[key] as string) ?? (env[key] as string);
+}
+const REFORMA_DATA_URL = getEnvVar("REFORMA_DATA_URL") ?? "";
 
-  for (const p of candidates) {
-    try {
-      return JSON.parse(readFileSync(p, "utf-8")) as ReformaData;
-    } catch {
-      // try next
-    }
+async function fetchRemoteTaxData(url: string, timeout = 5000): Promise<ReformaData | null> {
+  try {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(id);
+    if (!res.ok) return null;
+    return (await res.json()) as ReformaData;
+  } catch {
+    return null;
   }
-  return null;
+}
+
+async function loadTaxData(): Promise<ReformaData | null> {
+  if (REFORMA_DATA_URL) {
+    const remote = await fetchRemoteTaxData(REFORMA_DATA_URL);
+    if (remote) return remote;
+  }
+  return reformaBase as ReformaData;
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -39,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const data = loadTaxData();
+    const data = await loadTaxData();
     if (!data) {
       return new Response(
         JSON.stringify({ ok: false, error: "Dados tributários indisponíveis" }),

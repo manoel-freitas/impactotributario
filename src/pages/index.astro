@@ -1,27 +1,19 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Simulator from "../components/Simulator.vue";
 import NewsSection from "../components/NewsSection.astro";
 import type { ReformaData, NewsData } from "../lib/types.ts";
+import { fetchRSSItems } from "../lib/rss-fetch.ts";
 
-let taxData: ReformaData;
-let newsData: NewsData = { fetchedAt: new Date().toISOString(), items: [] };
+const taxData = await fetch("../generated/tax-data.json").then(r => r.json()).catch(() => 
+  fetch("../data/reforma-base.json").then(r => r.json())
+).then(d => d as ReformaData);
 
-try {
-  const mod = await import("../generated/tax-data.json");
-  taxData = mod.default as ReformaData;
-} catch {
-  const mod = await import("../data/reforma-base.json");
-  taxData = mod.default as ReformaData;
-}
-
-try {
-  const mod = await import("../generated/news.json");
-  newsData = mod.default as NewsData;
-} catch {
-  // No news yet
-}
+const newsData: NewsData = {
+  fetchedAt: new Date().toISOString(),
+  items: await fetchRSSItems().catch(() => []),
+};
 ---
 
 <BaseLayout>

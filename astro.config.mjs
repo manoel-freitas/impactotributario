@@ -12,7 +12,9 @@ export default defineConfig({
   site: "https://simuladortributario.com.br",
 
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    prerenderEnvironment: "node",
+  }),
 
   integrations: [
     vue(),

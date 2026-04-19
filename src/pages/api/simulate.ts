@@ -1,4 +1,4 @@
-// Server-side API route — only active when output=hybrid (Node.js/VPS deploy).
+// Server-side API route — works on Cloudflare Workers.
 // Returns a full SimulatorResult JSON from a SimulatorInput payload.
 //
 // Usage:
@@ -11,38 +11,56 @@
 //     -H "Content-Type: application/json" \
 //     -d '{"regime":"mei","sector":"comercio","monthlyRevenue":5000}'
 
-export const prerender = false; // Never pre-render — always server-side
+export const prerender = false;
 
 import type { APIRoute } from "astro";
 import type { SimulatorInput, ReformaData } from "../../lib/types.ts";
 import { calculate } from "../../lib/taxCalculator.ts";
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { join, dirname } from "node:path";
+import reformaBase from "../../data/reforma-base.json";
 
-// ─── Load tax data once at module level (cached across requests) ───────────────
-function loadTaxData(): ReformaData {
-  // Try generated file first (written by data-fetcher at startup)
-  const candidates = [
-    join(process.cwd(), "src", "generated", "tax-data.json"),
-    join(process.cwd(), "src", "data",      "reforma-base.json"),
-  ];
+// ─── Load tax data for Workers runtime ─────────────────────────────
+// Priority: 1) remote URL (REFORMA_DATA_URL env var), 2) bundled fallback
+function getEnvVar(key: string): string | undefined {
+  const g = globalThis as Record<string, unknown>;
+  const env = import.meta.env as Record<string, unknown>;
+  return (g[key] as string) ?? (env[key] as string);
+}
+const REFORMA_DATA_URL = getEnvVar("REFORMA_DATA_URL") ?? "";
 
-  for (const p of candidates) {
-    try {
-      return JSON.parse(readFileSync(p, "utf-8")) as ReformaData;
-    } catch {
-      // try next
-    }
+async function fetchRemoteTaxData(url: string, timeout = 5000): Promise<ReformaData | null> {
+  try {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(id);
+    if (!res.ok) return null;
+    return (await res.json()) as ReformaData;
+  } catch {
+    return null;
   }
-
-  throw new Error("No tax data found — run npm run dev or npm run build first.");
 }
 
-let _taxData: ReformaData | null = null;
-function getTaxData(): ReformaData {
-  if (!_taxData) _taxData = loadTaxData();
-  return _taxData;
+async function loadTaxData(): Promise<ReformaData> {
+  // Try remote URL first (Cloudflare Secret / env var)
+  if (REFORMA_DATA_URL) {
+    const remote = await fetchRemoteTaxData(REFORMA_DATA_URL);
+    if (remote) return remote;
+  }
+  // Fallback to bundled JSON
+  return reformaBase as ReformaData;
+}
+
+// Cached tax data (refreshed hourly)
+let _taxDataCache: { data: ReformaData; expiry: number } | null = null;
+async function getTaxData(): Promise<ReformaData> {
+  const now = Date.now();
+  // Return cached if still valid (1 hour TTL)
+  if (_taxDataCache && now < _taxDataCache.expiry) {
+    return _taxDataCache.data;
+  }
+  const data = await loadTaxData();
+  _taxDataCache = { data, expiry: now + 60 * 60 * 1000 };
+  return data;
 }
 
 // ─── Validators ────────────────────────────────────────────────────────────────
@@ -160,7 +178,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // Load tax data (separate from calculation to give distinct error codes)
   let taxData: ReformaData;
   try {
-    taxData = getTaxData();
+    taxData = await getTaxData();
   } catch (err) {
     console.error("[/api/simulate] Tax data unavailable:", err);
     return new Response(
