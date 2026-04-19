@@ -27,7 +27,7 @@ function isActive(path: string): boolean {
   return currentPath.startsWith(path);
 }
 
-const siteName = "Simulador Tributário";
+const siteName = "Impacto Tributário";
 const ogImage = `${Astro.site}og-image.png`;
 ---
 
@@ -67,13 +67,13 @@ const ogImage = `${Astro.site}og-image.png`;
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Simulador da Reforma Tributária",
-        "url": "https://simuladortributario.com.br",
+        "url": "https://impactotributario.com",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
         "description": "Simule o impacto da CBS e IBS no seu negócio — grátis, sem login, sem NCM.",
         "inLanguage": "pt-BR",
-        "author": { "@type": "Organization", "name": "Simulador Tributário" }
+        "author": { "@type": "Organization", "name": "Impacto Tributário" }
       }
     </script>
 
@@ -147,7 +147,7 @@ const ogImage = `${Astro.site}og-image.png`;
           <div class="flex items-center">
             <a href="/" class="flex items-center gap-2">
               <span class="material-symbols-outlined text-2xl text-[#001E40]" style="font-variation-settings: 'FILL' 1;">balance</span>
-              <span class="font-bold text-lg text-[#001E40] tracking-tight">Simulador Tributário</span>
+              <span class="font-bold text-lg text-[#001E40] tracking-tight">Impacto Tributário</span>
             </a>
           </div>
           <div class="hidden md:flex items-center gap-1">
@@ -231,7 +231,7 @@ const ogImage = `${Astro.site}og-image.png`;
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
           <div class="text-sm text-[#43474F]">
-            <span class="font-semibold text-[#1B1C1C]">© {new Date().getFullYear()} Simulador Tributário.</span>
+            <span class="font-semibold text-[#1B1C1C]">© {new Date().getFullYear()} Impacto Tributário.</span>
             <span class="ml-1">Baseado na LC 214/2025. Resultados são estimativas — consulte um contador.</span>
             <span class="hidden md:inline"> · </span>
             <a

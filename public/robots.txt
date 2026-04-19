@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://simuladortributario.com.br/sitemap-index.xml
+Sitemap: https://impactotributario.com/sitemap-index.xml

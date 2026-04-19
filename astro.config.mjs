@@ -10,7 +10,7 @@ import partytown from "@astrojs/partytown";
 // All .astro pages use `export const prerender = true` → built as static
 
 export default defineConfig({
-  site: "https://simuladortributario.com.br",
+  site: "https://impactotributario.com",
 
   output: "server",
   adapter: cloudflare({

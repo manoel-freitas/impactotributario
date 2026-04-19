@@ -123,7 +123,7 @@ async function fetchWithTimeout(
       signal: controller.signal,
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; ReformaTributariaBot/1.0; +https://simuladortributario.com.br)",
+          "Mozilla/5.0 (compatible; ReformaTributariaBot/1.0; +https://impactotributario.com)",
         Accept: "application/rss+xml, application/xml, text/xml, */*",
       },
     });

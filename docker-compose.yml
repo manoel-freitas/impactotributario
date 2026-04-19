@@ -12,12 +12,12 @@ services:
     labels:
       # ─── Traefik labels (same pattern as your homelab) ────────────────────
       - "traefik.enable=true"
-      - "traefik.http.routers.simulador.rule=Host(`simuladortributario.com.br`)"
+      - "traefik.http.routers.simulador.rule=Host(`impactotributario.com`)"
       - "traefik.http.routers.simulador.entrypoints=websecure"
       - "traefik.http.routers.simulador.tls.certresolver=letsencrypt"
       - "traefik.http.services.simulador.loadbalancer.server.port=4321"
       # www redirect
-      - "traefik.http.routers.simulador-www.rule=Host(`www.simuladortributario.com.br`)"
+      - "traefik.http.routers.simulador-www.rule=Host(`www.impactotributario.com`)"
       - "traefik.http.routers.simulador-www.middlewares=redirect-www"
       - "traefik.http.middlewares.redirect-www.redirectregex.regex=^https://www\\.(.*)"
       - "traefik.http.middlewares.redirect-www.redirectregex.replacement=https://$${1}"
