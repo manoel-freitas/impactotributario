@@ -158,14 +158,15 @@ const ogImage = `${Astro.site}og-image.png`;
                 aria-expanded="false"
                 aria-haspopup="true"
                 class:list={["px-3 py-2 text-sm font-semibold rounded-md transition-colors flex items-center gap-1", currentPath.startsWith("/mei") || currentPath.startsWith("/simples") || currentPath.startsWith("/iva") || currentPath.startsWith("/split") || currentPath.startsWith("/lucro") || currentPath.startsWith("/nano") || currentPath.startsWith("/transicao") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]}
-                onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); document.getElementById('guias-dropdown').classList.toggle('open', this.getAttribute('aria-expanded') === 'true');"
+                onmouseenter="document.getElementById('guias-dropdown').classList.add('open')"
+                onmouseleave="document.getElementById('guias-dropdown').classList.remove('open')"
               >
                 Guias
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <ul class="absolute top-full left-0 mt-2 w-56 bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 p-2" role="menu" style="display: none">
+              <ul class="absolute top-full left-0 mt-2 w-56 bg-white rounded-md border border-[#C3C6D1]/20 shadow-sm z-50 p-2" role="menu">
                 <li><a href="/mei" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/mei") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">MEI</a></li>
                 <li><a href="/simples-nacional" class:list={["block px-3 py-2 font-semibold rounded-md", isActive("/simples-nacional") ? "text-[#001E40] bg-[#F5F3F3]" : "text-[#43474F] hover:text-[#001E40] hover:bg-[#F5F3F3]"]} role="menuitem">Simples Nacional</a></li>
                 <li class="border-t border-[#C3C6D1]/20 my-1"></li>
@@ -243,20 +244,9 @@ const ogImage = `${Astro.site}og-image.png`;
     </footer>
 
     <style>
-      #guias-dropdown.open > ul { display: block !important; }
+      #guias-dropdown > ul { display: none; }
+      #guias-dropdown:hover > ul,
+      #guias-dropdown:focus-within > ul { display: block; }
     </style>
-
-    <!-- Close dropdown on outside click -->
-    <script>
-      document.addEventListener('click', (e) => {
-        const guiasDropdown = document.getElementById('guias-dropdown');
-        const target = e.target as Node | null;
-        if (guiasDropdown && target && !guiasDropdown.contains(target)) {
-          guiasDropdown.classList.remove('open');
-          const btn = guiasDropdown.querySelector('[aria-expanded]');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    </script>
   </body>
 </html>
