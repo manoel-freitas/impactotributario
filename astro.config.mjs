@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 import { dataFetcherIntegration } from "./src/integrations/data-fetcher.ts";
+import partytown from "@astrojs/partytown";
 
 // ─── Cloudflare Pages deploy target ────────────────────────────
 // All .astro pages use `export const prerender = true` → built as static
@@ -16,11 +17,16 @@ export default defineConfig({
     prerenderEnvironment: "node",
   }),
 
-  integrations: [
+integrations: [
     vue(),
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
+    }),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
     }),
     dataFetcherIntegration(),
   ],

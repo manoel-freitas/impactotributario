@@ -109,6 +109,26 @@ const ogImage = `${Astro.site}og-image.png`;
         crossorigin="anonymous"
       ></script>
     )}
+
+    <!-- Google Analytics 4 -->
+    {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+      <>
+        <script
+          type="text/partytown"
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}
+        ></script>
+        <script
+          type="text/partytown"
+          set:html={`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}');
+          `}
+        />
+      </>
+    )}
   </head>
 
   <body class="bg-base-100 text-base-content min-h-screen">
