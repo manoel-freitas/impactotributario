@@ -43,9 +43,9 @@ import SeeAlso from "../components/SeeAlso.astro";
             Acessar Calculadora
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calculate</span>
           </a>
-          <button class="bg-[#EFEDED] text-[#1B1C1C] px-8 py-4 rounded-xl font-semibold hover:bg-[#E3E2E2] transition-colors">
+          <a href="#faq" class="bg-[#EFEDED] text-[#1B1C1C] px-8 py-4 rounded-xl font-semibold hover:bg-[#E3E2E2] transition-colors">
             Ler FAQ
-          </button>
+          </a>
         </div>
       </div>
 
@@ -258,61 +258,94 @@ import SeeAlso from "../components/SeeAlso.astro";
   </section>
 
   <!-- FAQ Section -->
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
+  <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
     <h2 class="text-3xl font-bold text-[#001E40] tracking-tight mb-12 text-center" style="font-family: 'Public Sans', sans-serif;">Perguntas Frequentes (Simples Nacional)</h2>
     <div class="space-y-6">
-      <!-- FAQ Item -->
+      <!-- FAQ Item 1 -->
       <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
         <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
           <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
-          O Simples Nacional vai acabar?
+          O Simples Nacional vai acabar com a Reforma Tributária?
         </h3>
         <p class="text-[#43474F] leading-relaxed pl-10">
-          Não. O regime especial do Simples Nacional está garantido pela Constituição e será mantido. A mudança principal está na forma como os tributos que compõem a guia única interagem com o restante do sistema tributário.
+          Não. O Simples Nacional foi preservado pela Emenda Constitucional 132/2023 e pela Lei Complementar 214/2025. O regime continua existindo com todas as suas vantagens — pagamento unificado pelo DAS, menor burocracia e tratamento diferenciado. Você não precisa sair do Simples por causa da reforma.
         </p>
       </div>
 
-      <!-- FAQ Item -->
+      <!-- FAQ Item 2 -->
       <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
         <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
           <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
-          Sou obrigado a separar o IBS e CBS do DAS?
+          O que são CBS e IBS, e por que estão sendo criados?
         </h3>
         <p class="text-[#43474F] leading-relaxed pl-10">
-          Não, é uma opção. Se você não fizer nada, continuará pagando todos os tributos na guia única. No entanto, se o seu cliente principal for outra empresa, ele pode exigir que você separe para que ele possa utilizar os créditos integrais.
+          A CBS (Contribuição sobre Bens e Serviços) é um tributo federal que substitui PIS e COFINS. O IBS (Imposto sobre Bens e Serviços) é estadual/municipal e substitui ICMS e ISS. Para quem é do Simples Nacional, esses tributos continuam sendo absorvidos dentro do DAS — você não precisa calcular nem pagar separadamente.
         </p>
       </div>
 
-      <!-- FAQ Item -->
+      <!-- FAQ Item 3 -->
       <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
         <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
           <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
-          E quanto aos impostos como INSS patrimonial e IRPJ?
+          Quando as mudanças entram em vigor? Qual é o cronograma?
         </h3>
         <p class="text-[#43474F] leading-relaxed pl-10">
-          Estes tributos continuam sendo recolhidos normalmente dentro da guia unificada do DAS. A reforma atual trata especificamente da tributação sobre o consumo (ICMS, ISS, PIS, COFINS e IPI).
+          A transição é gradual: 2026 com alíquotas simbólicas (0,9% CBS + 0,1% IBS) para adaptação; 2027 com PIS e COFINS extintos e CBS plena; 2029–2032 com ICMS e ISS substituídos pelo IBS; 2033 com sistema antigo encerrado. Não há mudança brusca — tudo acontece de forma escalonada.
         </p>
       </div>
 
-      <!-- FAQ Item -->
+      <!-- FAQ Item 4 -->
       <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
         <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
           <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
-          Vale a pena migrar do Simples para o Lucro Presumido?
+          O que muda no PIS/COFINS para quem está no Simples Nacional?
         </h3>
         <p class="text-[#43474F] leading-relaxed pl-10">
-          Depende do perfil do negócio. A migração pode ser vantajosa para empresas com alto volume de vendas B2B que podem aproveitar créditos de CBS/IBS, ou negócios com margens muito apertadas. Para a maioria dos pequenos negócios com vendas ao consumidor final, o Simples continua mais vantajoso. Consulte seu contador.
+          Para optantes do Simples, PIS e COFINS já eram recolhidos dentro do DAS. Com a extinção em 2027 e entrada da CBS, esse mesmo modelo se mantém: o valor continuará sendo consolidado no DAS. Na prática, você não sentirá essa transição no dia a dia.
         </p>
       </div>
 
-      <!-- FAQ Item -->
+      <!-- FAQ Item 5 -->
       <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
         <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
           <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
-          Empresas do Simples geram crédito de CBS/IBS para clientes PJ?
+          Posso optar pelo regime geral de CBS/IBS mesmo sendo do Simples Nacional?
         </h3>
         <p class="text-[#43474F] leading-relaxed pl-10">
-          Sim, mas o crédito gerado é menor do que o gerado por empresas no regime geral (Lucro Presumido/Real). Isso pode impactar decisões de compra de grandes empresas que preferem fornecedores com crédito tributário pleno. Avalie seu perfil de clientes ao tomar decisões de regime.
+          Sim. A legislação criou o "Simples Híbrido": você pode recolher CBS e IBS pelas regras do regime geral (separado do DAS), mantendo os demais tributos no Simples. Isso permite gerar créditos integrais para seus clientes — vantagem se você vende principalmente para outras empresas (B2B).
+        </p>
+      </div>
+
+      <!-- FAQ Item 6 -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          O que é "crédito tributário" e por que isso importa para mim?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Cada empresa da cadeia pode abatentar CBS/IBS do imposto pago na etapa anterior. Empresários do Simples geram créditos limitados. Se seu cliente é uma empresa maior (Lucro Presumido/Real), ela pode preferir comprar de fornecedores com crédito pleno — o que pode colocar você em desvantagem competitiva B2B. Para vendas B2C, isso não afeta você.
+        </p>
+      </div>
+
+      <!-- FAQ Item 7 -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          Para o MEI especificamente, o que muda na prática?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Para o MEI, o impacto é mínimo. O DAS continua com o valor fixo mensal. Em 2026, não há aumento por causa da reforma. O sistema de notas fiscais terá ajustes técnicos para incluir CBS e IBS — mas isso é mudança de layout, sem burocracia extra. Verifique se seu software de notas está atualizado.
+        </p>
+      </div>
+
+      <!-- FAQ Item 8 -->
+      <div class="bg-white p-8 rounded-sm border border-[#C3C6D1]/15 hover:border-[#C3C6D1]/40 transition-colors">
+        <h3 class="text-xl font-bold text-[#1B1C1C] mb-3 flex items-start gap-4" style="font-family: 'Public Sans', sans-serif;">
+          <span class="material-symbols-outlined text-[#006C4B] mt-1" style="font-variation-settings: 'FILL' 1;">help</span>
+          Preciso fazer algo agora por causa da Reforma?
+        </h3>
+        <p class="text-[#43474F] leading-relaxed pl-10">
+          Para a maioria em 2026, não há ação urgente — o sistema está em fase de adaptação. Contudo, se você vende para outras empresas, vale conversar com um contador para simular se o "Simples Híbrido" compensa. Acompanhe atualizações no Simples Nacional e no Sebrae.
         </p>
       </div>
     </div>
@@ -325,28 +358,43 @@ import SeeAlso from "../components/SeeAlso.astro";
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "O Simples Nacional vai acabar?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Não. O regime especial do Simples Nacional está garantido pela Constituição e será mantido. A mudança principal está na forma como os tributos que compõem a guia única interagem com o restante do sistema tributário." }
+        "name": "O Simples Nacional vai acabar com a Reforma Tributária?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não. O Simples Nacional foi preservado pela Emenda Constitucional 132/2023 e pela Lei Complementar 214/2025. O regime continua existindo com todas as suas vantagens — pagamento unificado pelo DAS, menor burocracia e tratamento diferenciado. Você não precisa sair do Simples por causa da reforma." }
       },
       {
         "@type": "Question",
-        "name": "Sou obrigado a separar o IBS e CBS do DAS?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Não, é uma opção. Se você não fizer nada, continuará pagando todos os tributos na guia única. No entanto, se o seu cliente principal for outra empresa, ele pode exigir que você separe para que ele possa utilizar os créditos integrais." }
+        "name": "O que são CBS e IBS, e por que estão sendo criados?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A CBS (Contribuição sobre Bens e Serviços) é um tributo federal que substitui PIS e COFINS. O IBS (Imposto sobre Bens e Serviços) é estadual/municipal e substitui ICMS e ISS. Para quem é do Simples Nacional, esses tributos continuam sendo absorvidos dentro do DAS — você não precisa calcular nem pagar separadamente." }
       },
       {
         "@type": "Question",
-        "name": "E quanto aos impostos como INSS patrimonial e IRPJ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Estes tributos continuam sendo recolhidos normalmente dentro da guia unificada do DAS. A reforma atual trata especificamente da tributação sobre o consumo (ICMS, ISS, PIS, COFINS e IPI)." }
+        "name": "Quando as mudanças entram em vigor? Qual é o cronograma?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A transição é gradual: 2026 com alíquotas simbólicas (0,9% CBS + 0,1% IBS) para adaptação; 2027 com PIS e COFINS extintos e CBS plena; 2029–2032 com ICMS e ISS substituídos pelo IBS; 2033 com sistema antigo encerrado." }
       },
       {
         "@type": "Question",
-        "name": "Vale a pena migrar do Simples para o Lucro Presumido?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Depende do perfil do negócio. A migração pode ser vantajosa para empresas com alto volume de vendas B2B que podem aproveitar créditos de CBS/IBS, ou negócios com margens muito apertadas. Para a maioria dos pequenos negócios com vendas ao consumidor final, o Simples continua mais vantajoso. Consulte seu contador." }
+        "name": "O que muda no PIS/COFINS para quem está no Simples Nacional?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Para optantes do Simples, PIS e COFINS já eram recolhidos dentro do DAS. Com a extinção em 2027 e entrada da CBS, esse mesmo modelo se mantém: o valor continuará sendo consolidado no DAS. Na prática, você não sentirá essa transição no dia a dia." }
       },
       {
         "@type": "Question",
-        "name": "Empresas do Simples geram crédito de CBS/IBS para clientes PJ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas o crédito gerado é menor do que o gerado por empresas no regime geral (Lucro Presumido/Real). Isso pode impactar decisões de compra de grandes empresas que preferem fornecedores com crédito tributário pleno. Avalie seu perfil de clientes ao tomar decisões de regime." }
+        "name": "Posso optar pelo regime geral de CBS/IBS mesmo sendo do Simples Nacional?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. A legislação criou o 'Simples Híbrido': você pode recolher CBS e IBS pelas regras do regime geral (separado do DAS), mantendo os demais tributos no Simples. Isso permite gerar créditos integrais para seus clientes — vantagem se você vende principalmente para outras empresas (B2B)." }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é crédito tributário e por que isso importa para mim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cada empresa da cadeia pode abater CBS/IBS do imposto pago na etapa anterior. Empresários do Simples geram créditos limitados. Se seu cliente é uma empresa maior, ela pode preferir comprar de fornecedores com crédito pleno — o que pode colocar você em desvantagem competitiva B2B." }
+      },
+      {
+        "@type": "Question",
+        "name": "Para o MEI especificamente, o que muda na prática?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Para o MEI, o impacto é mínimo. O DAS continua com o valor fixo mensal. Em 2026, não há aumento por causa da reforma. O sistema de notas fiscais terá ajustes técnicos para incluir CBS e IBS — mas isso é mudança de layout, sem burocracia extra." }
+      },
+      {
+        "@type": "Question",
+        "name": "Preciso fazer algo agora por causa da Reforma?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Para a maioria em 2026, não há ação urgente — o sistema está em fase de adaptação. Contudo, se você vende para outras empresas, vale conversar com um contador para simular se o 'Simples Híbrido' compensa. Acompanhe atualizações no Simples Nacional e no Sebrae." }
       }
     ]
   })} />
