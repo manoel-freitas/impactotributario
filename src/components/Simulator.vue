@@ -73,6 +73,18 @@
       </button>
     </div>
 
+    <!-- Invalid URL params warning -->
+    <div v-if="invalidUrlParams" class="bg-[#FFF8E1] border border-[#FFC107]/40 rounded-lg p-4 flex items-start gap-3 mb-6" role="alert">
+      <span class="material-symbols-outlined text-[#F9A825] mt-0.5" style="font-variation-settings: 'FILL' 1;">link_off</span>
+      <div class="flex-1">
+        <div class="font-semibold text-[#5D4037]">Link de compartilhamento inválido</div>
+        <div class="text-sm text-[#5D4037]/80 mt-1">Iniciando simulador vazio. Os parâmetros do link estão incorretos ou expiraram.</div>
+      </div>
+      <button class="text-[#5D4037] hover:text-[#5D4037]/70 p-1" @click="invalidUrlParams = false" aria-label="Fechar">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+      </button>
+    </div>
+
     <!-- Step 1: Regime -->
     <Transition name="step" mode="out-in">
       <div v-if="step === 1" key="step1">
@@ -313,10 +325,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, onMounted } from "vue";
 import SimulatorResult from "./SimulatorResult.vue";
 import type { SimulatorInput, SimulatorResult as IResult, TaxRegime, Sector } from "../lib/types.ts";
 import { UF_LIST } from "../lib/ncmMapping.ts";
+
+// ─── URL Params Initialization ───────────────────────────────────────────
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search);
+  const pRegime = params.get("regime");
+  const pSector = params.get("setor");
+  const pFat = params.get("fat");
+
+  const validRegimes = regimes.map(r => r.value);
+  const validSectors = sectors.map(s => s.value);
+
+  if (pRegime && pSector && pFat) {
+    const fat = parseFloat(pFat);
+    if (
+      validRegimes.includes(pRegime as any) &&
+      validSectors.includes(pSector as any) &&
+      !isNaN(fat) && fat >= MIN_MONTHLY_REVENUE && fat <= MAX_MONTHLY_REVENUE
+    ) {
+      form.regime = pRegime as TaxRegime;
+      form.sector = pSector as Sector;
+      form.monthlyRevenue = fat;
+      simulate();
+      return;
+    }
+    invalidUrlParams.value = true;
+  } else if (pRegime || pSector || pFat) {
+    invalidUrlParams.value = true;
+  }
+});
 
 // Props: tax data injected from Astro at build time
 const props = defineProps<{
@@ -329,6 +370,7 @@ const loading = ref(false);
 const result = ref<IResult | null>(null);
 const customRevenue = ref("");
 const simulateError = ref<string | null>(null);
+const invalidUrlParams = ref(false);
 
 // Revenue constraints
 const MAX_MONTHLY_REVENUE = 6_500_000; // R$78M/ano (Lucro Real limit)
@@ -458,9 +500,20 @@ function onCustomRevenue() {
   form.monthlyRevenue = val;
 }
 
+// ─── URL State Sync ────────────────────────────────────────────────────────────
+function updateUrl() {
+  const url = new URL(window.location.href);
+  if (form.regime) url.searchParams.set("regime", form.regime);
+  if (form.sector) url.searchParams.set("setor", form.sector);
+  if (form.monthlyRevenue > 0) url.searchParams.set("fat", String(Math.round(form.monthlyRevenue)));
+  if (form.uf) url.searchParams.set("uf", form.uf);
+  window.history.replaceState({}, "", url.toString());
+}
+
 // ─── Navigation ───────────────────────────────────────────────────────────────
 function selectRegime(val: TaxRegime) {
   form.regime = val;
+  updateUrl();
 }
 
 function selectUf(code: string) {
@@ -473,6 +526,9 @@ function selectUf(code: string) {
 
 function next() {
   step.value++;
+  if (step.value === 5) {
+    updateUrl();
+  }
 }
 
 function back() {
@@ -490,7 +546,9 @@ function restart() {
   customRevenue.value = "";
   customRevenueError.value = null;
   simulateError.value = null;
+  invalidUrlParams.value = false;
   result.value = null;
+  window.history.replaceState({}, "", window.location.pathname);
 }
 
 // ─── Simulate ─────────────────────────────────────────────────────────────────
